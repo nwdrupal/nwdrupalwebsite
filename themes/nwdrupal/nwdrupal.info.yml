@@ -1,0 +1,18 @@
+name: NW Drupal
+description: 'The NW Drupal theme.'
+package: Custom
+type: theme
+core: 8.x
+base theme: classy
+
+libraries:
+  - nwdrupal/global-files
+
+regions:
+  header: Header
+  hero: Hero
+  content: Content
+  content_bottom: 'Content Bottom'
+  sidebar_first: 'Sidebar first'
+  footer: Footer
+  copyright: Copyright

@@ -1,0 +1,224 @@
+/*------------------------------------*\
+    #BREAKPOINT MEDIA QUERY MIXIN
+\*------------------------------------*/
+
+@mixin bp($point) {
+  @if $point == "teddy-bear" {
+    @media (min-width: $bp-teddy-bear) { @content; }
+  }
+	@if $point == "baby-bear" {
+    @media (min-width: $bp-baby-bear) { @content; }
+  }
+  @else if $point == "mama-bear" {
+    @media (min-width: $bp-mama-bear) { @content; }
+  }
+  @else if $point == "papa-bear" {
+    @media (min-width: $bp-papa-bear)  { @content; }
+  }
+  @else if $point == "grizzly-bear" {
+    @media (min-width: $bp-grizzly-bear)  { @content; }
+  }
+
+  @if $point == "sparkly-bear" {
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { @content; }
+  }
+}
+
+// A media query starting at $point1 and end JUST BEFORE $point2
+@mixin bp-range($point1, $point2) {
+  @media (min-width: $point1) and (max-width: $point2 - 0.0001em)  { @content; }
+}
+
+// Visible at breakpoint and above
+// @include visible-at("mama-bear", inline-block);
+@mixin visible-at($point, $display:block) {
+	display: none;
+
+	@include bp($point) {
+		display: $display;
+	}
+}
+
+// Hidden at breakpoint and about
+@mixin hidden-at($point) {
+	@include bp($point) {
+		display: none;
+	}
+}
+
+/*------------------------------------*\
+    #FONT FACE MIXIN
+    Stolen shamelessy from this Codpen -> http://codepen.io/javasteve99/pen/hDxpn
+\*------------------------------------*/
+
+@mixin font-face($font-family, $file-path, $font-weight, $font-style) {
+  @font-face {
+    font-family: $font-family;
+      src: url('#{$file-path}.eot');
+      src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+           url('#{$file-path}.woff') format('woff'),
+           url('#{$file-path}.ttf') format('truetype'),
+           url('#{$file-path}.svg##{$font-family}') format('svg');
+    font-weight: $font-weight;
+    font-style: $font-style;
+  }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+      font-family: $font-family;
+        src: url('#{$file-path}.svg##{$font-family}') format('svg');
+    }
+  }
+}
+
+/*------------------------------------*\
+    #CLEARFIX MIXIN
+\*------------------------------------*/
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/*------------------------------------*\
+    #EM/REM MIXIN
+    Create ems from px (target ÷ context = result)
+\*------------------------------------*/
+
+@function em($target, $context: 16px) {
+  @return ($target / $context) * 1em;
+}
+
+@function rem($target, $context: 16px) {
+  @return em($target, $context);
+}
+
+/*------------------------------------*\
+    #KEYFRAME MIXIN
+    No support in autoprefixr yet
+\*------------------------------------*/
+
+@mixin keyframe($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+
+@mixin buttonise($borderRadius: "true", $resting: $colour-primary, $hover: $colour-primary-lighter, $active: $colour-primary, $active-hover: $colour-primary-lighter, $color: white) {
+  display: inline-block;
+  padding: 0.4em 1em;
+  background-color: $resting;
+  border: 1px solid $resting;
+  color: $color;
+  text-decoration: none;
+  transition: background 0.3s, border 0.3s;
+  font-weight: $bold;
+
+  @if $borderRadius == "true" {
+    border-radius: $border-radius;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $hover;
+    background-color: $hover;
+    color: $color;
+  }
+
+  &.active {
+    background-color: $active;
+    border-color: $active;
+
+    &:hover {
+ 	  background-color: $active-hover;
+      border-color: $active-hover;
+    }
+  }
+}
+
+/*------------------------------------*\
+    #TEXT DECORATION
+\*------------------------------------*/
+
+@mixin text-decoration() {
+	text-decoration: underline;
+	
+	&:hover,
+	&:focus {
+	  text-decoration: underline;
+	}
+}
+
+@mixin text-decoration-alt() {
+	text-decoration: none;
+	
+	&:hover,
+	&:focus {
+	  text-decoration: underline;
+	}
+}
+
+@mixin text-decoration-plain() {
+	text-decoration: none;
+	
+	&:hover,
+	&:focus {
+	  text-decoration: none;
+	}
+}
+
+/*------------------------------------*\
+    #INVISIBILITY CLOAK
+\*------------------------------------*/
+
+@mixin invisible() {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	height: 1px;
+}
+
+/*------------------------------------*\
+    #LISTS
+\*------------------------------------*/
+
+@mixin list-inline() {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  
+  > li {
+    display: inline-block;
+  }
+}
+
+@mixin list-inline-spaced() {
+  @include list-inline();
+  
+  > li {
+    margin-right: 1em;
+    
+    &:last-child {
+      margin-right: 0; 
+    }
+  }
+}

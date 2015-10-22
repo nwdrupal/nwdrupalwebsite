@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the NW Drupal theme.
+ */
+
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function nwdrupal_preprocess_page(&$variables) {
+	
+	// Pass the current year in to the page template
+	$variables['date']['year'] = date('Y');
+
+}

@@ -1,0 +1,23 @@
+meetup_pull.admin:
+    path: '/admin/config/services/meetup_pull'
+    defaults:
+        _controller: '\Drupal\meetup_pull\Controller\MeetupPullAdminController::admin'
+        _title: 'Meetup Pull Admin'
+    requirements:
+        _permission: 'administer meetup pull'
+
+meetup_pull.force:
+    path: '/admin/config/services/meetup_pull/force'
+    defaults:
+        _controller: '\Drupal\meetup_pull\Controller\MeetupPullAdminController::force'
+        _title: 'Meetup Pull Force'
+    requirements:
+        _permission: 'administer meetup pull'
+
+meetup_pull.config:
+    path: '/admin/config/services/meetup_pull/config'
+    defaults:
+        _form: '\Drupal\meetup_pull\Form\MeetupPullConfig'
+        _title: 'Meetup Pull Configuration'
+    requirements:
+        _permission: 'administer meetup pull'

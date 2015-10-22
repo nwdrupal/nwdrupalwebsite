@@ -1,0 +1,99 @@
+/*------------------------------------*\
+    #GRID HINTS
+
+    < TEDDY = FULL WIDTH STACKED DIVS
+    TEDDY   = 6 COL GRID WITH STACKED SIDEBARS
+    BABY    = AS TEDDY
+    MAMA    = 12 COL FLUID GRID WITH SIDEBARS
+    PAPA    = 12 COL GRID FIXED AT 62EM WIDTH CONTAINER
+    GRIZZLY = 12 COL GRID FIXED AT 75EM WIDTH CONTAINER
+\*------------------------------------*/
+
+// Container divs based on Susy map
+.container,
+.container-narrow {
+	@include container;
+	width: 100%;
+
+	box-sizing: border-box;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+
+	@include bp("papa-bear") {
+		width: $bp-papa-bear-container;
+	}
+
+	@include bp("grizzly-bear") {
+		width: $bp-grizzly-bear-container;
+	}
+}
+
+.container-narrow {
+	@include bp("papa-bear") {
+		width: $bp-papa-bear-container - 6rem;
+	}
+
+	@include bp("grizzly-bear") {
+		width: $bp-grizzly-bear-container - 8rem;
+	}
+}
+
+header[role=banner] {
+	background-image: url('../images/banner_background.jpg');
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+}
+
+main[role=main] {
+	background: #f7f7f7;
+	padding: 3em 0;
+}
+
+.region-hero {
+	.block {
+		width: 50%;
+		color: white;
+		
+		h1, h2, h3, h4 {
+			color: white;
+		}
+	}
+}
+
+.region-header {
+	padding: 1em 0;
+	position: relative;
+}
+
+.region-footer {
+	.block {
+		border-top: 1px solid $colour-lines;
+		padding: 1.25em 0;
+	}
+}
+
+.layout-copyright {
+	background: $colour-primary;
+	color: white;
+	padding: 0.75em 0;
+	font-size: $smallest-size;
+
+	p {
+		margin: 0;
+	}
+	
+	a {
+		color: white;
+		@include text-decoration();
+	}
+}
+
+.region-copyright {
+	float: right;
+	
+	.menu {
+		margin: 0;
+		padding: 0;
+	}
+}

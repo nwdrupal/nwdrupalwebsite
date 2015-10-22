@@ -1,0 +1,136 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+	box-sizing: border-box;
+	margin: 0;
+	overflow-x: hidden;
+	padding: 0;
+	width: 100%;
+}
+
+html {
+	font-size: 100%;
+	font-family: $base-font-family;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+	overflow-x: hidden;
+	font-size: $base-font-size-small;
+	line-height: $base-line-height-small;
+	color: $colour-font;
+	overflow-x: hidden;
+
+	@include bp("baby-bear") {
+		font-size: $base-font-size;
+		line-height: $base-line-height;
+	}
+}
+
+.clearfix {
+	@include clearfix;
+}
+
+//
+// Typography
+//
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $base-font-heading;
+	font-weight: $bold;
+	color: $colour-font-heading;
+	line-height: 1.4em;
+
+	a {
+		color: inherit;
+
+		&:visited,
+		&:hover,
+		&:focus {
+			color: inherit;
+		}
+	}
+
+	&:first-child {
+	  margin-top: 0;
+	}
+}
+
+p {
+	margin-top: 0.75em;
+	margin-bottom: 1.5em;
+
+	&:first-child {
+	  margin-top: 0;
+	}
+}
+
+h1 { font-size: $h1-size; }
+h2 { font-size: $h2-size; }
+h3 { font-size: $h3-size; }
+h4 { font-size: $h4-size; }
+h5 { font-size: $h5-size; }
+h6 { font-size: $h6-size; }
+
+h1,
+h2 {
+	font-weight: $black;
+}
+
+//
+// Links
+//
+a {
+	@include text-decoration-alt();
+	color: $colour-primary;
+}
+
+//
+// Lists
+//
+ul,
+ol {
+	padding-left: 1.3em;
+}
+
+//
+// Responsive Images
+// Careful of the scope here
+//
+
+img {
+	vertical-align: bottom;
+  max-width: 100%;
+	height: auto !important;
+  width: auto\9; /* ie8+9 */
+}
+
+//
+// Float filter
+//
+
+.floatleft {
+  float: left;
+  margin-right: 1em;
+}
+
+.floatright {
+  float: right;
+  margin-left: 1em;
+}
+
+.floatleft,
+.floatright {
+  img {
+    float: none !important;
+  }
+}

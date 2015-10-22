@@ -1,0 +1,20 @@
+meetup_pull.admin:
+  title: 'Meetup Pull'
+  description: 'Force pull events from Meetup'
+  route_name: meetup_pull.admin
+  base_route: meetup_pull.admin
+  weight: 100
+
+meetup_pull.force:
+  title: 'Meetup Pull Force'
+  description: 'Force pull events from Meetup'
+  route_name: meetup_pull.force
+  base_route: meetup_pull.admin
+  weight: 101
+
+meetup_pull.config:
+  title: 'Meetup Configuration'
+  description: 'Setup the Meetup events pull'
+  route_name: meetup_pull.config
+  base_route: meetup_pull.admin
+  weight: 102

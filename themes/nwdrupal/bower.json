@@ -1,0 +1,25 @@
+{
+  "name": "drupal-8-theme-kit",
+  "version": "0.0.0",
+  "dependencies": {
+    "animate.css": "~3.4.0",
+    "brand-colors": "~0.5.5",
+    "crayon": "*",
+    "fitvids": "~1.1.0",
+    "imagesloaded": "~3.1.8",
+    "normalize-css": ">=3",
+    "odometer": "~0.4.7",
+    "SetToMaxHeight": "https://bitbucket.org/accessadvertising/settomaxheight.git#~0.0.1",
+    "susy": ">=2.2",
+    "wow": "~1.1.2"
+  },
+  "overrides": {
+    "brand-colors": {
+      "main": "dist/latest/scss/brand-colors.latest.scss"
+    },
+		"fitvids": {
+			"main": "jquery.fitvids.js",
+		  "dependencies": {}
+		}
+  }
+}

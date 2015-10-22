@@ -1,0 +1,8 @@
+name: 'Meetup Pull'
+dependencies: {  }
+description: 'Pulls events from the NWDrupal Meetup account.'
+core: 8.x
+package: Custom
+type: module
+
+#configure: system.logging_settings

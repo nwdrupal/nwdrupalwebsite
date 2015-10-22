@@ -1,0 +1,102 @@
+/*------------------------------------*\
+    #COLORS
+\*------------------------------------*/
+
+$colour-primary: #0947aa;
+$colour-lines: #dadada;
+
+$colour-font: #555;
+$colour-font-heading: $colour-primary;
+
+$colour-twitter: #00aced;
+$colour-facebook: #3b5998;
+$colour-googleplus: #dd4b39;
+$colour-pinterest: #cb2027;
+$colour-linkedin: #007bb6;
+$colour-youtube: #bb0000;
+$colour-vimeo: #aad450;
+$colour-tumblr: #32506d;
+$colour-instagram: #517fa4;
+$colour-flickr: #ff0084;
+$colour-dribbble: #ea4c89;
+$colour-quora: #a82400;
+$colour-foursquare: #0072b1;
+$colour-forrst: #5B9A68;
+$colour-vk: #45668e;
+$colour-wordpress: #21759b;
+$colour-stumbleupon: #EB4823;
+$colour-yahoo: #7B0099;
+$colour-blogger: #fb8f3d;
+$colour-soundcloud: #ff3a00;
+$colour-vine: #00bf8f;
+
+/*------------------------------------*\
+    #FONTS
+\*------------------------------------*/
+
+$base-font-sans-serif: 'Alegreya Sans', sans-serif;
+$base-font-serif: Georgia, serif;
+
+$base-font-family: $base-font-sans-serif;
+$base-font-heading: $base-font-sans-serif;
+
+$black:  800;
+$bold:   700;
+$normal: 400;
+$light:  300;
+
+// Base font size hint:
+// 75%    = 12px
+// 81.25% = 13px
+// 87.5%  = 14px
+// 93.75% = 15px
+// 100%   = 16px
+// 106.25% = 17px
+// 112.5% = 18px
+$base-font-size: 112.5%;
+$base-line-height: 1.6;
+$base-font-size-small: 100%;
+$base-line-height-small: 1.6;
+
+$h1-size: 2.5em;
+$h2-size: 1.4em;
+$h3-size: 1.2em;
+$h4-size: 1em;
+$h5-size: 1em;
+$h6-size: 1em;
+
+$small-size: 0.888em;
+$smallest-size: 0.777em;
+
+/*------------------------------------*\
+    #BREAKPOINTS
+\*------------------------------------*/
+
+$bp-teddy-bear: 15em; // 16 * 15 = 240
+$bp-baby-bear: 30em; // 16 * 30 = 480
+$bp-mama-bear: 48em; // 16 * 48 = 768
+$bp-papa-bear: 62em; // 16 * 62 = 992
+$bp-grizzly-bear: 75em; // 16 * 75 = 1200
+
+// I used rem so that the widths would be calculated on the
+// base font size (html element) and not the adjusted font size (body element)...
+$bp-papa-bear-container: 62rem; // 16 * 62 = 992
+$bp-grizzly-bear-container: 75rem; // 16 * 75 = 1200
+$site-max-width: 110rem;
+
+// Susy map
+$susy: (
+  columns: 12,
+  gutters: 0.5,
+  column-width: false,
+	last-flow: from,
+	global-box-sizing: border-box,
+	use-custom: (rem: true)
+);
+
+/*------------------------------------*\
+    #MISC
+\*------------------------------------*/
+
+$border-radius: 0.3em;
+$duration: 0.25s;

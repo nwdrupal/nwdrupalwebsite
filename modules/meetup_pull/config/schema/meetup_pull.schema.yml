@@ -1,0 +1,10 @@
+meetup_pull:
+  type: mapping
+  label: 'Meetup Pull Settings'
+  mapping:
+    api_key:
+      type: string
+      label: 'The Meetup API Key'
+    group_name:
+      type: string
+      label: 'The group name'

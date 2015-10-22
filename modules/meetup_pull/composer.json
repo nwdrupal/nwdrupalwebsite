@@ -1,0 +1,6 @@
+{
+    "name": "drupal/meetup_pull",
+    "require": {
+        "dms/meetup-api-client": "2.0.0"
+    }
+}

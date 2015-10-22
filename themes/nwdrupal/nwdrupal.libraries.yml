@@ -1,0 +1,10 @@
+global-files:
+  version: 1.x
+  css:
+    theme:
+      css/global.css: {}
+      css/print.css: { media: print }
+  js:
+    js/scripts.js: {}
+  dependencies:
+    - core/jquery

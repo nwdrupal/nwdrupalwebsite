@@ -1,0 +1,6 @@
+meetup_pull.admin:
+  title: 'Meetup Pull'
+  description: 'Force pull events from Meetup'
+  parent: system.admin_config_services
+  route_name: meetup_pull.admin
+  weight: 100
