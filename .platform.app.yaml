@@ -1,0 +1,20 @@
+name: php
+type: php
+build:
+    flavor: drupal
+access:
+    ssh: contributor
+relationships:
+    database: "mysql:mysql"
+web:
+    document_root: "/"
+    passthru: "/index.php"
+disk: 2048
+mounts:
+    "/public/sites/default/files": "shared:files/files"
+    "/tmp": "shared:files/tmp"
+    "/private": "shared:files/private"
+crons:
+    drupal:
+        spec: "*/20 * * * *"
+        cmd: "cd public ; drush core-cron"
