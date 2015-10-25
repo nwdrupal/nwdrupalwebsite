@@ -9,6 +9,7 @@ $settings['install_profile'] = 'standard';
 
 // You should modify the hash_salt so that it is specific to your application.
 $settings['hash_salt'] = '7tXX3zNpJqFSGLfjo44H9489NiQMjwSs8R3qlGkzcefgvNBTp2779oSJTp8Yrmik';
+$config_directories['sync'] = 'sites/default/files/config_-6xAfWZNOB9e4hRui4Evr-4FYRaE1zEcZVC_CUNYDFwxprp7A8PwuXmUIOCUXqPKALa3qGe1wQ/sync';
 
 /**
  * Default Drupal 8 settings.
