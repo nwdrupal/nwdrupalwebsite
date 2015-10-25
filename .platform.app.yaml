@@ -18,3 +18,7 @@ crons:
     drupal:
         spec: "*/20 * * * *"
         cmd: "cd public ; drush core-cron"
+# The build-time dependencies of the app.
+dependencies:
+    php:
+        "drush/drush": "8.0.0-rc2"
