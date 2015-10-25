@@ -1,5 +1,5 @@
 name: php
-type: php
+type: "php:5.6"
 build:
     flavor: drupal
 access:
