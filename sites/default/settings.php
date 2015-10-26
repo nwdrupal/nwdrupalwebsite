@@ -20,7 +20,6 @@ $config_directories['sync'] = 'sites/default/files/config_-6xAfWZNOB9e4hRui4Evr-
  * See https://api.drupal.org/api/drupal/sites!default!default.settings.php/8
  */
 $databases = array();
-$config_directories = array();
 $settings['update_free_access'] = FALSE;
 $settings['container_yamls'][] = __DIR__ . '/services.yml';
 
