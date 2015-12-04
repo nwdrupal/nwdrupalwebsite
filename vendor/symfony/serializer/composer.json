@@ -19,7 +19,6 @@
         "php": ">=5.3.9"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "~2.7",
         "symfony/yaml": "~2.0,>=2.0.5",
         "symfony/config": "~2.2",
         "symfony/property-access": "~2.3",
@@ -34,7 +33,10 @@
         "symfony/property-access": "For using the ObjectNormalizer."
     },
     "autoload": {
-        "psr-4": { "Symfony\\Component\\Serializer\\": "" }
+        "psr-4": { "Symfony\\Component\\Serializer\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "minimum-stability": "dev",
     "extra": {
