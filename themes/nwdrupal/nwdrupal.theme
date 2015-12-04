@@ -7,11 +7,33 @@
 
 
 /**
- * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ * Implements hook_preprocess_HOOK()
  */
 function nwdrupal_preprocess_page(&$variables) {
 	
 	// Pass the current year in to the page template
 	$variables['date']['year'] = date('Y');
+}
 
+/**
+ * Implements hook_preprocess_HOOK()
+ */
+function nwdrupal_preprocess_node(&$variables) {
+  if (!empty($variables['content']['field_event_rsvps'])) {
+    $count = $variables['content']['field_event_rsvps'][0]['#markup'];
+    
+    if ($count == 1) {
+      $variables['content']['field_event_rsvps'][0]['#markup'] = t('1 RSVP');
+    }
+    else {
+      $variables['content']['field_event_rsvps'][0]['#markup'] = t('@count RSVPs', array('@count' => $count));
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_hook_alter
+ */
+function nwdrupal_theme_suggestions_node_alter(&$suggestions, $variables) {
+  //dpm($suggestions);
 }

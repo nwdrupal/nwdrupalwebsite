@@ -1,3 +1,44 @@
 .footer-community-links {
   @include list-inline-spaced();
 }
+
+#block-nwdrupal-main-menu {
+  .menu {
+    @include list-inline();
+    height: 2.4em;
+    
+    > li {
+      width: 16%;
+      position: absolute;
+      top: 0;
+      text-align: center;
+      font-size: 1.1em;
+      padding: 0;
+      
+      &:nth-child(1) {
+        left: 0;  
+      }
+      &:nth-child(2) {
+        left: 16%;  
+      }
+      &:nth-child(3) {
+        left: 68%;
+      }
+      &:nth-child(4) {
+        left: 84%;
+      }
+      
+      a {
+        color: white;
+        display: block;
+        padding: 0 0 0.5em 0;
+        @include text-decoration-plain();
+        border-bottom: 1px solid rgba(white, 0.8);
+        
+        &.is-active {
+          font-weight: $bold;
+        }
+      }
+    }
+  }
+}

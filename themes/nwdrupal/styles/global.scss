@@ -32,10 +32,14 @@
     #IMPORT MODULES
 \*------------------------------------*/
 
+@import "modules/_fontello.scss";
+@import "modules/_fontello-codes.scss";
 @import "modules/_header.scss";
 @import "modules/_nodes.scss";
 @import "modules/_blocks.scss";
 @import "modules/_menus.scss";
+@import "modules/_buttons.scss";
+@import "modules/_footer.scss";
 
 /*------------------------------------*\
     #IMPORT LAYOUT

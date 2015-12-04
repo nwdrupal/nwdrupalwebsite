@@ -1,0 +1,19 @@
+.region-header {
+	padding-top: 1em;
+  padding-bottom: 1em;
+	position: relative;
+}
+
+.region-hero {
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+  
+	.block {
+		width: 50%;
+		color: white;
+		
+		h1, h2, h3, h4 {
+			color: white;
+		}
+	}
+}

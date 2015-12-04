@@ -1,0 +1,11 @@
+.node--type-event {
+  &.node--view-mode-teaser {
+    .event-data {
+      @include span(3 of 9);
+    }
+    
+    .event-description {
+      @include span(6 of 9 last);
+    }
+  }
+}

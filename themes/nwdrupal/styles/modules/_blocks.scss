@@ -21,41 +21,23 @@
   width: 100%;
   top: 50%;
   transform: translateY(-50%);
-  
-  .menu {
-    @include list-inline();
-    
-    > li {
-      width: 18%;
-      position: absolute;
-      top: 0;
-      text-align: center;
-      
-      &:nth-child(1) {
-        left: 0;  
-      }
-      &:nth-child(2) {
-        left: 18%;  
-      }
-      &:nth-child(3) {
-        left: 64%;
-      }
-      &:nth-child(4) {
-        left: 82%;
-      }
-      
-      a {
-        color: white;
-        display: block;
-        padding: 0.25em 0;
-        @include text-decoration-plain();
-        border-bottom: 1px solid rgba(white, 0.8);
-      }
-    }
-  }
 }
 
 #block-nwdrupal-branding {
-  width: 24%;
+  width: 29%;
   margin: 0 auto;
+}
+
+#block-welcometext {
+  h1 { 
+    font-size: $mega-size;
+    font-weight: $bold;
+    margin: 0 0 0.25em 0;
+  }
+  
+  p {
+    font-size: $h2-size;
+    margin: 0 0 1.5em 0;
+    line-height: 1.25;
+  }
 }

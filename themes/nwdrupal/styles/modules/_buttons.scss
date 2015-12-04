@@ -1,0 +1,99 @@
+
+[class^="btn"] {
+  display: inline-block;
+  padding: 0.55em 0.85em 0.45em 0.85em;
+  background: $colour-primary;
+  box-shadow: darken($colour-primary, 20%) 0 0.175em 0;
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  line-height: 1.25;
+  border-radius: 0.15em;
+  @include text-decoration-plain();
+  font-weight: 500;
+  border: none;
+  outline: none;
+
+  .icon-right-open,
+  .icon-right-open-big {
+    margin-left: 1.5em;
+    
+    &:before {
+      margin-left: 0;
+      margin-right: 0;
+      width: auto;
+      transition: all $duration;
+    }
+  }
+  
+  .icon-left-open,
+  .icon-left-open-big {
+    margin-right: 1.5em;
+    
+    &:before {
+      margin-left: 0;
+      margin-right: 0;
+      width: auto;
+      transition: all $duration;
+    }
+  }
+  
+  &:hover,
+  &:focus {
+    .icon-right-open,
+    .icon-right-open-big {
+      &:before {
+        transform: translateX(0.15em);
+      }
+    }
+    
+    .icon-left-open,
+    .icon-left-open-big {
+      &:before {
+        transform: translateX(-0.15em);
+      }
+    }
+  }
+
+  //
+  // Coloured Buttons
+  //
+  &.btn-yellow {
+    background: $colour-yellow;
+    box-shadow: darken($colour-yellow, 20%) 0 0.175em 0;
+  }
+  
+  &.btn-red {
+    background: $colour-red;
+    box-shadow: darken($colour-red, 20%) 0 0.175em 0;
+  }
+  
+  &.btn-green {
+    background: $colour-green;
+    box-shadow: darken($colour-green, 20%) 0 0.175em 0;
+  }
+  
+  &.btn-blue {
+    background: $colour-blue;
+    box-shadow: darken($colour-blue, 20%) 0 0.175em 0;
+  }
+  
+  &.btn-grey {
+    background: #F7F7F7;
+    box-shadow: darken(#F7F7F7, 20%) 0 0.175em 0;
+  }
+  
+  //
+  // Button sizes
+  //
+  &.btn-small {
+    font-size: $small-size;
+    padding: 0.35em 0.75em 0.2em 0.75em;
+  }
+  
+  &.btn-smallest {
+    font-size: $smallest-size;
+    padding: 0.35em 0.75em 0.2em 0.75em;
+  }
+}
+

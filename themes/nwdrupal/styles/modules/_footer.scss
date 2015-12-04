@@ -1,0 +1,31 @@
+.region-footer {
+	.block {
+		border-top: 1px solid $colour-lines;
+		padding: 1.25em 0;
+	}
+}
+
+.layout-copyright {
+	background: $colour-primary;
+	color: white;
+	padding: 0.75em 0;
+	font-size: $smallest-size;
+
+	p {
+		margin: 0;
+	}
+	
+	a {
+		color: white;
+		@include text-decoration();
+	}
+}
+
+.region-copyright {
+	float: right;
+	
+	.menu {
+		margin: 0;
+		padding: 0;
+	}
+}
