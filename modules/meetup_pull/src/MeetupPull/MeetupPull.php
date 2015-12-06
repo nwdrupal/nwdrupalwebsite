@@ -64,6 +64,12 @@ class MeetupPull {
       // Time format in MySQL is '2015-11-12T18:00:00'.
       $date = $dateTime->format('Y-m-d\TH:i:00');
 
+      $path_components = array(
+        'year' => $dateTime->format('Y'),
+        'month' => $dateTime->format('m'),
+        'day' => $dateTime->format('d')
+      );
+
       $event_title = $event['name'];
 
       $event_body = array(
@@ -95,7 +101,12 @@ class MeetupPull {
         if ($venue !== FALSE) {
           $node->field_event_venue = $venue;
         }
+
         $node->save();
+
+        $node_alias = '/event/' . $path_components['year'] . '/' . $path_components['month'] . '/' . $path_components['day'] . '/' . $this->slug($event_title);
+        \Drupal::service('path.alias_storage')->save('/'.$node->urlInfo()->getInternalPath(), $node_alias, $node->language()->getId());
+
       }
       else {
         // Event doesn't exist, create it.
@@ -118,10 +129,22 @@ class MeetupPull {
 
         $node = Node::create($new_node);
         $node->save();
+
+        $node_alias = '/event/' . $path_components['year'] . '/' . $path_components['month'] . '/' . $path_components['day'] . '/' . $this->slug($event_title);
+        \Drupal::service('path.alias_storage')->save('/'.$node->urlInfo()->getInternalPath(), $node_alias, $node->language()->getId());
+
       }
     }
 
     return 'Meetup events pulled and updated. ' . $count_new . ' new events and ' . $count_existing . ' existing event processed.<br>' . ($count_existing + $count_new) . ' events procssed in totoal.';
-}
+  }
+
+  public function slug($string){
+    $slug = trim($string); // trim the string
+    $slug= preg_replace('/[^a-zA-Z0-9 -]/','',$slug ); // only take alphanumerical characters, but keep the spaces and dashes too...
+    $slug= str_replace(' ','-', $slug); // replace spaces by dashes
+    $slug= strtolower($slug);  // make it lowercase
+    return $slug;
+  }
 
 }
