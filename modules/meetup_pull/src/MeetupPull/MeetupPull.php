@@ -65,7 +65,11 @@ class MeetupPull {
       $date = $dateTime->format('Y-m-d\TH:i:00');
 
       $event_title = $event['name'];
-      $event_body = $event['description'];
+
+      $event_body = array(
+        'value' => $event['description'],
+        'format' => filter_default_format(),
+      );
 
       // Search the a node with the same meetup event ID already in the system.
       $nids = \Drupal::entityQuery('node')
