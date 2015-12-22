@@ -19,14 +19,28 @@ function nwdrupal_preprocess_page(&$variables) {
  * Implements hook_preprocess_HOOK()
  */
 function nwdrupal_preprocess_node(&$variables) {
-  if (!empty($variables['content']['field_event_rsvps'])) {
-    $count = $variables['content']['field_event_rsvps'][0]['#markup'];
-    
-    if ($count == 1) {
-      $variables['content']['field_event_rsvps'][0]['#markup'] = t('1 RSVP');
+
+  if ($variables['node']->getType() == 'event') {
+
+    if (!empty($variables['content']['field_event_rsvps'])) {
+      $count = $variables['content']['field_event_rsvps'][0]['#markup'];
+
+      if ($count == 1) {
+        $variables['content']['field_event_rsvps'][0]['#markup'] = t('1 RSVP');
+      }
+      else {
+        $variables['content']['field_event_rsvps'][0]['#markup'] = t('@count RSVPs', array('@count' => $count));
+      }
     }
-    else {
-      $variables['content']['field_event_rsvps'][0]['#markup'] = t('@count RSVPs', array('@count' => $count));
+  }
+
+  if (isset($variables['view'])) {
+    // If we are looking at an event view then:
+    // - set an attribute so that we can alter any templates accordingly.
+    // - add a class to the first node.
+    if ($variables['node']->id() == $variables['view']->result[0]->_entity->id()) {
+      $variables['content']['first_entry'] = TRUE;
+      $variables['attributes']['class'][] = 'first-event';
     }
   }
 }
@@ -35,5 +49,4 @@ function nwdrupal_preprocess_node(&$variables) {
  * Implements hook_theme_suggestions_hook_alter
  */
 function nwdrupal_theme_suggestions_node_alter(&$suggestions, $variables) {
-  //dpm($suggestions);
 }
