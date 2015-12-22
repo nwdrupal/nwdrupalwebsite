@@ -13,14 +13,5 @@
     ],
     "support": {
         "issues": "http://drupal.org/project/issues/composer_manager"
-    },
-    "autoload": {
-        "psr-4": {
-            "Drupal\\composer_manager\\Composer\\": "/var/www/site/docroot/modules/composer_manager/src/Composer"
-        }
-    },
-    "scripts": {
-        "drupal-rebuild": "Drupal\\composer_manager\\Composer\\Command::rebuild",
-        "drupal-update": "Drupal\\composer_manager\\Composer\\Command::update"
     }
 }

@@ -34,6 +34,14 @@ interface PackageManagerInterface {
   public function getExtensionPackages();
 
   /**
+   * Returns the installed packages.
+   *
+   * @return array
+   *   The installed packages, loaded from vendor/composer/installed.json.
+   */
+  public function getInstalledPackages();
+
+  /**
    * Returns the required packages.
    *
    * This includes all extension requirements as well as any previously

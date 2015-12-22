@@ -4,8 +4,8 @@ package: 'Composer'
 # core: '8.x'
 type: module
 
-# Information added by Drupal.org packaging script on 2015-10-02
-version: '8.x-1.0-beta4+4-dev'
+# Information added by Drupal.org packaging script on 2015-10-18
+version: '8.x-1.0-rc1'
 core: '8.x'
 project: 'composer_manager'
-datestamp: 1443792241
+datestamp: 1445201041

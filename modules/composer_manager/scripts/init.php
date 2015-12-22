@@ -16,7 +16,7 @@ require __DIR__ . '/../composer_manager.module';
 
 composer_manager_initialize($root);
 
-echo 'Composer Manager has been successfuly initialized.' . PHP_EOL;
+echo 'Composer Manager has been successfully initialized.' . PHP_EOL;
 
 /**
  * Returns the absolute path to Drupal's root directory.

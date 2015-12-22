@@ -4,7 +4,6 @@
  * @file
  * Install, update, and uninstall functions for the Composer Manager module.
  */
-use Drupal\Core\Url;
 
 /**
  * Implements hook_requirements().

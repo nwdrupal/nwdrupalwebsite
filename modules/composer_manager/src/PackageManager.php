@@ -63,14 +63,31 @@ class PackageManager implements PackageManagerInterface {
       $modules = $listing->scan('module');
       $extensions = $profiles + $modules;
 
+      $installed_packages = $this->getInstalledPackages();
+      $installed_packages = array_map(function ($package) {
+        return $package['name'];
+      }, $installed_packages);
+
       $this->packages['extension'] = [];
       foreach ($extensions as $extension_name => $extension) {
         $filename = $this->root . '/' . $extension->getPath() . '/composer.json';
         if (is_readable($filename)) {
           $extension_package = JsonFile::read($filename);
-          if (!empty($extension_package['require']) || !empty($extension_package['require-dev'])) {
-            $this->packages['extension'][$extension_name] = JsonFile::read($filename);
+          // The package must at least have a name and some requirements.
+          if (empty($extension_package['name'])) {
+            continue;
           }
+          if (empty($extension_package['require']) && empty($extension_package['require-dev'])) {
+            continue;
+          }
+          if (in_array($extension_package['name'], $installed_packages)) {
+            // This extension is already managed with Composer.
+            continue;
+          }
+          // The path is required by rebuildRootPackage().
+          $extension_package['extra']['path'] = $extension->getPath() . '/composer.json';
+
+          $this->packages['extension'][$extension_name] = $extension_package;
         }
       }
     }
@@ -81,11 +98,20 @@ class PackageManager implements PackageManagerInterface {
   /**
    * {@inheritdoc}
    */
+  public function getInstalledPackages() {
+    if (!isset($this->packages['installed'])) {
+      $this->packages['installed'] = JsonFile::read($this->root . '/vendor/composer/installed.json');
+    }
+
+    return $this->packages['installed'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getRequiredPackages() {
     if (!isset($this->packages['required'])) {
-      $core_package = $this->getCorePackage();
       $merged_extension_package = $this->buildMergedExtensionPackage();
-
       $packages = [];
       foreach ($merged_extension_package['require'] as $package_name => $constraint) {
         if (substr($package_name, 0, 7) != 'drupal/') {
@@ -96,8 +122,7 @@ class PackageManager implements PackageManagerInterface {
         }
       }
 
-      $installed_packages = JsonFile::read($this->root . '/vendor/composer/installed.json');
-      foreach ($installed_packages as $package) {
+      foreach ($this->getInstalledPackages() as $package) {
         $package_name = $package['name'];
         if (!isset($packages[$package_name])) {
           continue;
@@ -183,17 +208,24 @@ class PackageManager implements PackageManagerInterface {
    */
   public function rebuildRootPackage() {
     $root_package = JsonFile::read($this->root . '/composer.json');
-    // Rebuild the merged keys.
-    $merged_extension_package = $this->buildMergedExtensionPackage();
-    $root_package['require'] = [
-      'composer/installers' => '^1.0.21',
-      'wikimedia/composer-merge-plugin' => '^1.3.0',
-    ] + $merged_extension_package['require'];
-    $root_package['require-dev'] = $merged_extension_package['require-dev'];
+    // Initialize known start values. These should match what's already in
+    // the root composer.json shipped with Drupal.
     $root_package['replace'] = [
       'drupal/core' => '~8.0',
-    ] + $merged_extension_package['replace'];
-    $root_package['repositories'] = $merged_extension_package['repositories'];
+    ];
+    $root_package['repositories'] = [];
+    $root_package['extra']['merge-plugin']['include'] = [
+      'core/composer.json',
+    ];
+    // Add the discovered extensions to the replace list so that they doesn't
+    // get redownloaded if required by another package.
+    foreach ($this->getExtensionPackages() as $extension_package) {
+      $version = '8.*';
+      if (isset($extension_package['extra']['branch-alias']['dev-master'])) {
+        $version = $extension_package['extra']['branch-alias']['dev-master'];
+      }
+      $root_package['replace'][$extension_package['name']] = $version;
+    }
     // Ensure the presence of the Drupal Packagist repository.
     // @todo Remove once Drupal Packagist moves to d.o and gets added to
     // the root package by default.
@@ -201,6 +233,10 @@ class PackageManager implements PackageManagerInterface {
       'type' => 'composer',
       'url' => 'https://packagist.drupal-composer.org',
     ];
+    // Add each discovered extension to the merge list.
+    foreach ($this->getExtensionPackages() as $extension_package) {
+      $root_package['extra']['merge-plugin']['include'][] = $extension_package['extra']['path'];
+    }
 
     JsonFile::write($this->root . '/composer.json', $root_package);
   }
@@ -208,18 +244,17 @@ class PackageManager implements PackageManagerInterface {
   /**
    * Builds a package containing the merged fields of all extension packages.
    *
+   * Used for reporting purposes only (getRequiredPackages()).
+   *
    * @return array
-   *   An array with the follwing keys:
+   *   An array with the following keys:
    *   - 'require': The merged requirements
    *   - 'require-dev': The merged dev requirements.
-   *   - 'replace': The merged replace list.
    */
   protected function buildMergedExtensionPackage() {
     $package = [
       'require' => [],
       'require-dev' => [],
-      'replace' => [],
-      'repositories' => [],
     ];
     $keys = array_keys($package);
     foreach ($this->getExtensionPackages() as $extension_package) {
@@ -231,10 +266,6 @@ class PackageManager implements PackageManagerInterface {
     }
     $package['require'] = $this->filterPlatformPackages($package['require']);
     $package['require-dev'] = $this->filterPlatformPackages($package['require-dev']);
-    $package['repositories'] = array_unique($package['repositories'], SORT_REGULAR);
-    // For some reason array_unique() casts the keys to string, which causes
-    // problems when exported to JSON.
-    $package['repositories'] = array_values($package['repositories']);
 
     return $package;
   }
