@@ -8,4 +8,13 @@
       @include span(6 of 9 last);
     }
   }
+  &.node--view-mode-full {
+    .event-data {
+      @include span(3 of 9);
+    }
+
+    .event-description {
+      @include span(6 of 9 last);
+    }
+  }
 }

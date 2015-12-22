@@ -304,12 +304,12 @@ img {
   color: white;
 }
 
-.node--type-event.node--view-mode-teaser .event-data {
+.node--type-event.node--view-mode-full .event-data, .node--type-event.node--view-mode-teaser .event-data {
   width: 30.76923%;
   float: left;
   margin-right: 3.84615%;
 }
-.node--type-event.node--view-mode-teaser .event-description {
+.node--type-event.node--view-mode-full .event-description, .node--type-event.node--view-mode-teaser .event-description {
   width: 65.38462%;
   float: left;
   margin-right: 0;

@@ -66,16 +66,16 @@
  */
 #}
 {%
-set classes = [
-'node',
-'node--type-' ~ node.bundle|clean_class,
-node.isPromoted() ? 'node--promoted',
-node.isSticky() ? 'node--sticky',
-not node.isPublished() ? 'node--unpublished',
-view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-]
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
 %}
-
+{{ attach_library('classy/node') }}
 <article{{ attributes.addClass(classes) }}>
 
   <div class="clearfix">
@@ -83,20 +83,32 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
       <div>{{ content.field_event_date }}</div>
       {{ content.field_event_venue }}
       {{ content.field_event_rsvps }}
-      {% if content.first_entry %}
-        <p><a href="{{ content.field_event_url.0 }}" title="RSVP Now at Meetup.com" class="btn btn-red" target="_blank">RSVP NOW</a></p>
-      {%  endif %}
+
+      <p><a href="{{ content.field_event_url.0 }}" title="RSVP Now at Meetup.com" class="btn btn-red" target="_blank">RSVP NOW</a></p>
+
     </div>
 
-    <div class="event-description">
-      <h2{{ title_attributes }}>
-        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-      </h2>
+    {{ content.body }}
 
-      {{ content.body }}
+    <h2>Find us here:</h2>
+    <div>
 
-      <a href="{{ url }}" class="btn btn-yellow">Find out more</a>
+      <img width="100" src="{{ file_url(node.field_event_venue.entity.field_venue_logo.entity.uri.value) }}" alt="{{ node.field_event_venue.entity.field_venue_logo.alt }}" />
+
+      <p><strong>{{ node.field_event_venue.entity.name.value }}</strong></p>
+
+      <p>{{ node.field_event_venue.entity.field_venue_address.value }}</p>
+
+      <div>GOOGLE MAPS BLOCK</div>
+
+    </div>
+
     </div>
   </div>
 
 </article>
+
+<!--
+{{ dump(node.field_event_venue) }}
+
+-->

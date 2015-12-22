@@ -77,25 +77,25 @@
 %}
 <article{{ attributes.addClass(classes) }}>
 
-  {{ title_prefix }}
-  {{ title_suffix }}
-
   <div class="clearfix">
     <div class="event-data">
-      {{ content.field_event_date }}
+      <div>{{ content.field_event_date }}</div>
       {{ content.field_event_venue }}
       {{ content.field_event_rsvps }}
+      {% if content.first_entry %}
+        <p><a href="{{ content.field_event_url.0 }}" title="RSVP Now at Meetup.com" class="btn btn-red" target="_blank">RSVP NOW</a></p>
+      {%  endif %}
     </div>
-  
+
     <div class="event-description">
       <h2{{ title_attributes }}>
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
       </h2>
-    
+
       {{ content.body }}
-      
-      <a href="{{ url }}" class="btn">Read more</a>  
+
+      <a href="{{ url }}" class="btn btn-yellow">Find out more</a>
     </div>
   </div>
-  
+
 </article>
