@@ -1,1 +1,3 @@
 sites/default/files/php
+sites/default/files/.htaccess
+settings.local.php
