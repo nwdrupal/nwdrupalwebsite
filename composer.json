@@ -9,7 +9,8 @@
         "dms/meetup-api-client": "2.0.0"
     },
     "replace": {
-        "drupal/core": "~8.0"
+        "drupal/core": "~8.0",
+        "drupal/meetup_pull": "8.*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -24,7 +25,8 @@
         ],
         "merge-plugin": {
             "include": [
-                "core/composer.json"
+                "core/composer.json",
+                "modules/meetup_pull/composer.json"
             ],
             "recurse": false,
             "replace": false,
