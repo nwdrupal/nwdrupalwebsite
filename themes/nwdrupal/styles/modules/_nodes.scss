@@ -18,3 +18,12 @@
     }
   }
 }
+
+.container {
+  div.layout-content {
+    @include span(7 of 9);
+  }
+  aside.layout-sidebar-first {
+    @include span(2 of 9 last);
+  }
+}
