@@ -57,11 +57,11 @@
 
   {{ page.breadcrumb }}
 
-  <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+<main role="main">
+  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-    {% if page.sidebar_first %}
-	<div class="container">
+  {% if page.sidebar_first %}
+    <div class="container">
       <div class="layout-content">
         {{ page.content }}
       </div>{# /.layout-content #}
@@ -69,15 +69,15 @@
         {{ page.sidebar_first }}
       </aside>
     </div>
-	{% else %}
+  {% else %}
     <div class="container-narrow">
       <div class="layout-content">
         {{ page.content }}
       </div>{# /.layout-content #}
-	</div>
-	{% endif %}
+    </div>
+  {% endif %}
 
-  </main>
+</main>
 
   {% if page.content_bottom %}
     <div class="layout-content-bottom">
