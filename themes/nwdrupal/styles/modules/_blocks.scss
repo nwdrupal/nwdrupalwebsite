@@ -42,7 +42,7 @@
   }
 }
 
-div.view-events {
+body.path-frontpage div.view-events {
 
   article {
     border: 1px #eee solid;
@@ -64,10 +64,21 @@ div.view-events {
   }
 }
 
+div.view-events {
+
+  article {
+    border: 1px #eee solid;
+    background: white;
+    padding-bottom: 23px;
+    padding-top: 21px;
+    margin-bottom: 20px;
+  }
+}
+
 div.event-data {
   div {
     width: 61%;
-    padding: 1rem;
+    padding: 0.1rem;
     margin-left: 0.5rem;
     margin-top: 1rem;
     background: #f8f8f8;
@@ -78,7 +89,12 @@ div.event-data {
   div.event-date {
     background: #0947aa;
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: -0.8rem;
   }
+
+  div.field--name-field-event-rsvps {
+    width: auto;
+  }
 }
+
