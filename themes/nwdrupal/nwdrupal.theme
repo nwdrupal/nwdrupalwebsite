@@ -22,6 +22,10 @@ function nwdrupal_preprocess_node(&$variables) {
 
   if ($variables['node']->getType() == 'event') {
 
+   // $date = $variables['node']->field_event_date->value();
+
+    //die($date);
+
     if (!empty($variables['content']['field_event_rsvps'])) {
       $count = $variables['content']['field_event_rsvps'][0]['#markup'];
 
@@ -41,6 +45,11 @@ function nwdrupal_preprocess_node(&$variables) {
     if ($variables['node']->id() == $variables['view']->result[0]->_entity->id()) {
       $variables['content']['first_entry'] = TRUE;
       $variables['attributes']['class'][] = 'first-event';
+    }
+    if (isset($variables['view']->result[2])) {
+      if ($variables['node']->id() == $variables['view']->result[2]->_entity->id()) {
+        $variables['attributes']['class'][] = 'last-event';
+      }
     }
   }
 }

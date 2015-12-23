@@ -80,12 +80,17 @@
 
   <div class="clearfix">
     <div class="event-data">
-      <div>{{ content.field_event_date }}</div>
+      <div class="event-date">
+        <strong>{{ content.field_event_date.value|date('D') }}<br>
+          {{ content.field_event_date.value|date('j M') }}<br>
+          {{ content.field_event_date.value|date('Y') }}</strong><br>
+        {{ content.field_event_date.value|date('H:i') }}
+      </div>
       {{ content.field_event_venue }}
+      <div>
       {{ content.field_event_rsvps }}
-
       <p><a href="{{ content.field_event_url.0 }}" title="RSVP Now at Meetup.com" class="btn btn-red" target="_blank">RSVP NOW</a></p>
-
+      </div>
     </div>
 
     {{ content.body }}
