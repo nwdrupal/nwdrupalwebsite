@@ -96,21 +96,17 @@
     {{ content.body }}
 
     <h2>Find us here:</h2>
-    <div>
-
+    <div class="event-page-map">
+      <div class="event-page-map-left">
       <img width="100" src="{{ file_url(node.field_event_venue.entity.field_venue_logo.entity.uri.value) }}" alt="{{ node.field_event_venue.entity.field_venue_logo.alt }}" />
-
       <p><strong>{{ node.field_event_venue.entity.name.value }}</strong></p>
-
       <p>{{ node.field_event_venue.entity.field_venue_address.value }}</p>
+      </div>
 
-      <div>GOOGLE MAPS BLOCK</div>
-
+      <div class="event-page-map-right">
+        <img src="https://maps.googleapis.com/maps/api/staticmap?markers={{ node.field_event_venue.entity.field_venue_address.value }}&size=681x300&zoom=18" alt="" /></div>
+      </div>
     </div>
-
-    </div>
-
-
 </article>
 
 <!--

@@ -27,3 +27,12 @@
     @include span(2 of 9 last);
   }
 }
+
+.event-page-map {
+  div.event-page-map-left {
+    @include span(2 of 9);
+  }
+  div.event-page-map-right {
+    @include span(7 of 9 last);
+  }
+}
