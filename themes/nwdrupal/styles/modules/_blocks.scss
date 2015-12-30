@@ -43,7 +43,6 @@
 }
 
 body.path-frontpage div.view-events {
-
   article {
     border: 1px #eee solid;
     background: white;
@@ -62,10 +61,12 @@ body.path-frontpage div.view-events {
       margin-left: 4%;
     }
   }
+  .view-footer {
+    margin-left: 45%;
+  }
 }
 
 div.view-events {
-
   article {
     border: 1px #eee solid;
     background: white;
@@ -83,7 +84,6 @@ div.event-data {
     margin-top: 1rem;
     background: #f8f8f8;
     text-align: center;
-
   }
 
   div.event-date {

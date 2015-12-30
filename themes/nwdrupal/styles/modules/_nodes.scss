@@ -36,3 +36,16 @@
     @include span(7 of 9 last);
   }
 }
+
+
+.front-page-join {
+  margin-top: 400px;
+
+  div.front-page-join-left {
+    @include span(4 of 8);
+  }
+  div.front-page-join-right {
+    @include span(4 of 8 last);
+  }
+
+}
