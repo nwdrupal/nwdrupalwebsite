@@ -98,3 +98,17 @@ div.event-data {
   }
 }
 
+div.event-meetup-advert-block {
+  padding: 40px;
+  background: white;
+  margin-bottom: 20px;
+  border: 1px #eee solid;
+  background-image: url('/themes/nwdrupal/images/meetup_logo_slant.png');
+  background-repeat: no-repeat;
+  text-align: right;
+  font-size: 1.75rem;
+  padding-left: 30rem;
+  font-weight: bold;
+  background-position-y: -8rem;
+  background-position-x: -1rem;
+}

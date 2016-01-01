@@ -24,8 +24,6 @@ function nwdrupal_preprocess_node(&$variables) {
 
    // $date = $variables['node']->field_event_date->value();
 
-    //die($date);
-
     if (!empty($variables['content']['field_event_rsvps'])) {
       $count = $variables['content']['field_event_rsvps'][0]['#markup'];
 
