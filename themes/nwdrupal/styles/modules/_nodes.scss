@@ -1,11 +1,17 @@
 .node--type-event {
   &.node--view-mode-teaser {
     .event-data {
-      @include span(3 of 9);
+      @include bp("mama-bear") {
+        float: left;
+        width: 10em;
+      }
     }
-    
+
     .event-description {
-      @include span(6 of 9 last);
+      @include bp("mama-bear") {
+        float: right;
+        width: calc(100% - 11.5em);
+      }
     }
   }
   &.node--view-mode-full {
