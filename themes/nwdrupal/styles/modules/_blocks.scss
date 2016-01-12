@@ -42,6 +42,44 @@
   }
 }
 
+.node--type-event.node--view-mode-teaser {
+  overflow: hidden;
+}
+
+.first-event.node--type-event.node--view-mode-teaser {
+  padding-top: 3.5em;
+
+  @include bp("mama-bear") {
+    padding-top: 21px;
+    padding-right: 2em;
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: block;
+    width: 9em;
+    padding: 0.2em 0.5em;
+
+    background-color: forestgreen;
+    color: white;
+
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+    text-transform: uppercase;
+
+    content: "Next Event";
+
+    @include bp("mama-bear") {
+      transform: translateX(30%) rotate(45deg) translateY(-100%);
+      transform-origin: top left;
+    }
+  }
+}
+
 body.path-frontpage div.view-events {
   article {
     border: 1px #eee solid;
@@ -49,44 +87,14 @@ body.path-frontpage div.view-events {
     overflow: hidden;
     padding-bottom: 23px;
     padding-top: 21px;
+    padding-right: 1em;
     margin-bottom: 20px;
     float: left;
     width: 48%;
 
     &.first-event {
-      padding-top: 3.5em;
       width: 100%;
       float: none;
-
-      @include bp("mama-bear") {
-        padding-top: 21px;
-        padding-right: 2em;
-      }
-
-      &:after {
-        position: absolute;
-        top: 0;
-        right: 0;
-
-        display: block;
-        width: 9em;
-        padding: 0.2em 0.5em;
-
-        background-color: forestgreen;
-        color: white;
-
-        font-weight: bold;
-        font-size: 1em;
-        text-align: center;
-        text-transform: uppercase;
-
-        content: "Next Event";
-
-        @include bp("mama-bear") {
-          transform: translateX(30%) rotate(45deg) translateY(-100%);
-          transform-origin: top left;
-        }
-      }
     }
 
     &.last-event {
@@ -94,7 +102,11 @@ body.path-frontpage div.view-events {
     }
   }
   .view-footer {
-    margin-left: 45%;
+    display: block;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 }
 
