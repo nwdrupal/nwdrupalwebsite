@@ -1,0 +1,25 @@
+<?php
+
+use Drupal\meetup_pull\MeetupPull\MeetupPull;
+
+/**
+ * Implements hook_cron().
+ */
+function meetup_pull_cron() {
+  // We access our configuration.
+  $cron_config = \Drupal::configFactory()->getEditable('meetup_pull.settings');
+  // Default to an hourly interval. Of course, cron has to be running at least
+  // hourly for this to work.
+  $interval = $cron_config->get('interval');
+  $interval = !empty($interval) ? $interval : 3600;
+
+  // We usually don't want to act every time cron runs (which could be every
+  // minute) so keep a time for the next run in a variable.
+  $next_execution = $cron_config->get('next_execution');
+  $next_execution = !empty($next_execution) ? $next_execution : 0;
+  if (REQUEST_TIME >= $next_execution) {
+    $meetupPull = new MeetupPull();
+    \Drupal::logger('meetup_pull')->notice(t($meetupPull->meetupPull()));
+    $cron_config->set('next_execution', REQUEST_TIME + $interval)->save();
+  }
+}
