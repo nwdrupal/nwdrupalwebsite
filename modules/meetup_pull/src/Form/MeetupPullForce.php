@@ -24,7 +24,13 @@ class MeetupPullForce extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $meetupPull = new MeetupPull();
 
-    drupal_set_message($this->t($meetupPull->meetupPull()));
+    $message = $this->t($meetupPull->meetupPull());
+
+    $message .= $this->t('<br>(run manually)');
+
+    \Drupal::logger('meetup_pull')->notice($message);
+
+    drupal_set_message($message);
   }
 
 }
