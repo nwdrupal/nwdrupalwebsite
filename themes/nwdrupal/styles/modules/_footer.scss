@@ -1,3 +1,117 @@
+#block-thankyoutooursponsors {
+	padding: 1.25em 0;
+
+	h2,
+	ul {
+		@include bp("mama-bear") {
+			display: block;
+			float: left;
+		}
+	}
+
+	h2 {
+		color: $colour-font;
+		font-size: 1em;
+		font-weight: lighter;
+
+		@include bp("mama-bear") {
+			font-size: 1.8em;
+			margin: 0.2em 0 0;
+			width: 20%;
+		}
+	}
+
+	ul {
+		@include clearfix;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		@include bp("mama-bear") {
+			display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+			width: 80%;
+		}
+
+		li {
+
+			@include bp("mama-bear") {
+				display: block;
+				float: left;
+				padding: 0 1em;
+				text-align: center;
+				width: 25%;
+			}
+
+			+ li {
+				margin-top: 1.5rem;
+
+				@include bp("mama-bear") {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+}
+
+.menu--join-us {
+	@include clearfix;
+
+	#block-joinus-menu,
+	.menu {
+
+		@include bp("mama-bear") {
+			display: block;
+			float: left;
+		}
+	}
+
+	#block-joinus-menu {
+		color: $colour-font;
+		font-size: 1em;
+		font-weight: bold;
+
+		@include bp("mama-bear") {
+			margin: 0;
+		}
+	}
+
+	.menu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		@include bp("mama-bear") {
+			margin-left: 1rem;
+		}
+
+		.menu-item {
+			padding: 0;
+			margin: 0;
+
+			@include bp("mama-bear") {
+				float: left;
+			}
+
+			+ .menu-item {
+				margin-top: 1rem;
+
+				@include bp("mama-bear") {
+					margin-top: 0;
+					margin-left: 1rem;
+				}
+			}
+		}
+
+		a {
+			color: $colour-font;
+			text-decoration: underline;
+		}
+	}
+}
+
 .region-footer {
 	.block {
 		border-top: 1px solid $colour-lines;
@@ -14,7 +128,7 @@
 	p {
 		margin: 0;
 	}
-	
+
 	a {
 		color: white;
 		@include text-decoration();
@@ -23,7 +137,7 @@
 
 .region-copyright {
 	float: right;
-	
+
 	.menu {
 		margin: 0;
 		padding: 0;
