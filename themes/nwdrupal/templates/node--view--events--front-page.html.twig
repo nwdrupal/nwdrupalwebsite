@@ -96,7 +96,9 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     </div>
 
     <div class="event-description">
-      <h2{{ title_attributes }}>{{ label }}</h2>
+      <h2{{ title_attributes }}>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h2>
 
       {{ content.body }}
 
