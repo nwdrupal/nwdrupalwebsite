@@ -35,23 +35,43 @@
 }
 
 .event-page-map {
+  @include clearfix;
+
   div.event-page-map-left {
-    @include span(2 of 9);
+    @include bp("mama-bear") {
+      @include span(2 of 9);
+    }
   }
+
   div.event-page-map-right {
-    @include span(7 of 9 last);
+
+    @include bp("mama-bear") {
+      @include span(7 of 9 last);
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  + .front-page-join {
+    margin-top: 2rem;
   }
 }
 
 
 .front-page-join {
-  margin-top: 400px;
+  @include clearfix;
 
   div.front-page-join-left {
-    @include span(4 of 8);
+    @include bp("mama-bear") {
+      @include span(4 of 8);
+    }
   }
   div.front-page-join-right {
-    @include span(4 of 8 last);
+    @include bp("mama-bear") {
+      @include span(4 of 8 last);
+    }
   }
 
 }

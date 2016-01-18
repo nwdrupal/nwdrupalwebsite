@@ -7,11 +7,15 @@
 .region-hero {
   padding-top: 2.5em;
   padding-bottom: 2.5em;
-  
+
 	.block {
-		width: 50%;
+
 		color: white;
-		
+
+		@include bp("mama-bear") {
+			width: 50%;
+		}
+
 		h1, h2, h3, h4 {
 			color: white;
 		}

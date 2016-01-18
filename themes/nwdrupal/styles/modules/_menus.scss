@@ -1,40 +1,64 @@
 .footer-community-links {
-  @include list-inline-spaced();
+  @include list-inline-spaced;
 }
 
 #block-nwdrupal-main-menu {
+
   .menu {
-    @include list-inline();
+    @include clearfix;
+    @include list-inline;
     height: 2.4em;
-    
+
     > li {
-      width: 16%;
-      position: absolute;
-      top: 0;
       text-align: center;
+      float: left;
       font-size: 1.1em;
-      padding: 0;
-      
-      &:nth-child(1) {
-        left: 0;  
+      width: 50%;
+
+      &:nth-child(odd),
+      &:nth-child(even) {
+
+        @include bp("mama-bear") {
+          padding: 0 !important;
+        }
       }
-      &:nth-child(2) {
-        left: 16%;  
+
+      &:nth-child(odd) {
+        padding-right: 0.4em;
       }
-      &:nth-child(3) {
-        left: 68%;
+
+      &:nth-child(even) {
+        padding-left: 0.4em;
       }
-      &:nth-child(4) {
-        left: 84%;
+
+      @include bp("mama-bear") {
+        $menu-item-width: 16%;
+        $menu-items-number: 100% / $menu-item-width;
+        width: $menu-item-width;
+        position: absolute;
+        top: 0;
+
+        &:nth-child(1) {
+          left: $menu-item-width * 0;
+        }
+        &:nth-child(2) {
+          left: $menu-item-width * 1;
+        }
+        &:nth-child(3) {
+          left: $menu-item-width * ($menu-items-number - 2);
+        }
+        &:nth-child(4) {
+          left: $menu-item-width * ($menu-items-number - 1);
+        }
       }
-      
+
       a {
         color: white;
         display: block;
         padding: 0 0 0.5em 0;
-        @include text-decoration-plain();
+        @include text-decoration-plain;
         border-bottom: 1px solid rgba(white, 0.8);
-        
+
         &.is-active {
           font-weight: $bold;
         }

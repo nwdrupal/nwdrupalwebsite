@@ -17,15 +17,24 @@
 }
 
 #block-nwdrupal-main-menu {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+
+  @include bp("mama-bear") {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
 }
 
 #block-nwdrupal-branding {
-  width: 29%;
-  margin: 0 auto;
+  width: 60%;
+  margin: 0 auto 1rem;
+
+  @include bp("mama-bear") {
+    margin-bottom: 0;
+    width: 29%;
+  }
 }
 
 #block-welcometext {
@@ -86,12 +95,16 @@ body.path-frontpage div.view-events {
     border: 1px #eee solid;
     background: white;
     overflow: hidden;
-    padding-bottom: 23px;
     padding-top: 21px;
     padding-right: 1em;
+    padding-bottom: 23px;
+    padding-left: 1em;
     margin-bottom: 20px;
-    float: left;
-    width: 48%;
+
+    @include bp("mama-bear") {
+      float: left;
+      width: 48%;
+    }
 
     &.first-event {
       width: 100%;
@@ -124,8 +137,8 @@ div.view-events {
 div.event-data {
   div {
     padding: 0.1rem;
-    margin-left: 0.5rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     background: #f8f8f8;
     text-align: center;
   }
