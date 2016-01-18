@@ -139,11 +139,23 @@ class MeetupPull {
     return 'Meetup events pulled and updated. ' . $count_new . ' new events and ' . $count_existing . ' existing event processed.<br>' . ($count_existing + $count_new) . ' events procssed in totoal.';
   }
 
-  public function slug($string){
-    $slug = trim($string); // trim the string
-    $slug= preg_replace('/[^a-zA-Z0-9 -]/','',$slug ); // only take alphanumerical characters, but keep the spaces and dashes too...
-    $slug= str_replace(' ','-', $slug); // replace spaces by dashes
-    $slug= strtolower($slug);  // make it lowercase
+  /**
+   * Generate a slug from a string.
+   * 
+   * @param string $string
+   *
+   * @return string
+   */
+  public function slug($string) {
+    // Trim the string.
+    $slug = trim($string);
+    // Only take alphanumerical characters, but keep the spaces and dashes too.
+    $slug = preg_replace('/[^a-zA-Z0-9 -]/', '', $slug);
+    // Replace spaces by dashes.
+    $slug = str_replace(' ', '-', $slug);
+    // Make it lowercase.
+    $slug = strtolower($slug);
+
     return $slug;
   }
 
