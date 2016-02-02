@@ -34,6 +34,15 @@ function nwdrupal_preprocess_node(&$variables) {
         $variables['content']['field_event_rsvps'][0]['#markup'] = t('@count RSVPs', array('@count' => $count));
       }
     }
+
+    if (!empty($variables['content']['field_event_date'])) {
+      $timestamp = strtotime($variables['content']['field_event_date'][0]['#text']);
+      $variables['content']['nwdug_event_date']['week_day'] = date('D', $timestamp);
+      $variables['content']['nwdug_event_date']['day'] = date('j', $timestamp);
+      $variables['content']['nwdug_event_date']['month'] = date('M', $timestamp);
+      $variables['content']['nwdug_event_date']['year'] = date('Y', $timestamp);
+      $variables['content']['nwdug_event_date']['time'] = date('H:i', $timestamp);
+    }
   }
 
   if (isset($variables['view'])) {

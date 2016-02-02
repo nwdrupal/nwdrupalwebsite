@@ -81,10 +81,11 @@
   <div class="clearfix">
     <div class="event-data">
       <div class="event-date">
-        <strong>{{ content.field_event_date.value|date('D') }}<br>
-          {{ content.field_event_date.value|date('j M') }}<br>
-          {{ content.field_event_date.value|date('Y') }}</strong><br>
-        {{ content.field_event_date.value|date('H:i') }}
+        <strong>{{ content.nwdug_event_date.week_day }}<br>
+          {{ content.nwdug_event_date.day }} {{ content.nwdug_event_date.month }}<br>
+          {{ content.nwdug_event_date.year }}</strong><br>
+          {{ content.nwdug_event_date.time }}
+
       </div>
       {{ content.field_event_venue }}
       <div>
