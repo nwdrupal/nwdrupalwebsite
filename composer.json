@@ -5,11 +5,10 @@
     "license": "GPL-2.0+",
     "require": {
         "composer/installers": "^1.0.21",
-        "wikimedia/composer-merge-plugin": "^1.3.0",
-        "dms/meetup-api-client": "2.0.0"
+        "wikimedia/composer-merge-plugin": "~1.3"
     },
     "replace": {
-        "drupal/core": "~8.0",
+        "drupal/core": "~8.1",
         "drupal/meetup_pull": "8.*"
     },
     "minimum-stability": "dev",

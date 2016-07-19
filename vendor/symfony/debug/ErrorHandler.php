@@ -95,6 +95,7 @@ class ErrorHandler
 
     private $loggedTraces = array();
     private $isRecursive = 0;
+    private $isRoot = false;
     private $exceptionHandler;
     private $bootstrappingLogger;
 
@@ -136,7 +137,12 @@ class ErrorHandler
             $handler = new static();
         }
 
-        $prev = set_error_handler(array($handler, 'handleError'), $handler->thrownErrors | $handler->loggedErrors);
+        if (null === $prev = set_error_handler(array($handler, 'handleError'))) {
+            restore_error_handler();
+            // Specifying the error types earlier would expose us to https://bugs.php.net/63206
+            set_error_handler(array($handler, 'handleError'), $handler->thrownErrors | $handler->loggedErrors);
+            $handler->isRoot = true;
+        }
 
         if ($handlerIsNew && is_array($prev) && $prev[0] instanceof self) {
             $handler = $prev[0];
@@ -277,7 +283,7 @@ class ErrorHandler
     public function throwAt($levels, $replace = false)
     {
         $prev = $this->thrownErrors;
-        $this->thrownErrors = (E_ALL | E_STRICT) & ($levels | E_RECOVERABLE_ERROR | E_USER_ERROR) & ~E_USER_DEPRECATED & ~E_DEPRECATED;
+        $this->thrownErrors = ($levels | E_RECOVERABLE_ERROR | E_USER_ERROR) & ~E_USER_DEPRECATED & ~E_DEPRECATED;
         if (!$replace) {
             $this->thrownErrors |= $prev;
         }
@@ -352,12 +358,16 @@ class ErrorHandler
     private function reRegister($prev)
     {
         if ($prev !== $this->thrownErrors | $this->loggedErrors) {
-            $handler = set_error_handler('var_dump', 0);
+            $handler = set_error_handler('var_dump');
             $handler = is_array($handler) ? $handler[0] : null;
             restore_error_handler();
             if ($handler === $this) {
                 restore_error_handler();
-                set_error_handler(array($this, 'handleError'), $this->thrownErrors | $this->loggedErrors);
+                if ($this->isRoot) {
+                    set_error_handler(array($this, 'handleError'), $this->thrownErrors | $this->loggedErrors);
+                } else {
+                    set_error_handler(array($this, 'handleError'));
+                }
             }
         }
     }
@@ -370,7 +380,7 @@ class ErrorHandler
      * @param int    $line
      * @param array  $context
      *
-     * @return bool Returns false when no handling happens so that the PHP engine can handle the error itself.
+     * @return bool Returns false when no handling happens so that the PHP engine can handle the error itself
      *
      * @throws \ErrorException When $this->thrownErrors requests so
      *
@@ -508,6 +518,10 @@ class ErrorHandler
                 $this->isRecursive = false;
 
                 throw $e;
+            } catch (\Throwable $e) {
+                $this->isRecursive = false;
+
+                throw $e;
             }
         }
 
@@ -529,7 +543,7 @@ class ErrorHandler
         }
         $type = $exception instanceof FatalErrorException ? $exception->getSeverity() : E_ERROR;
 
-        if ($this->loggedErrors & $type) {
+        if (($this->loggedErrors & $type) || $exception instanceof FatalThrowableError) {
             $e = array(
                 'type' => $type,
                 'file' => $exception->getFile(),
@@ -556,9 +570,9 @@ class ErrorHandler
             } else {
                 $message = 'Uncaught Exception: '.$exception->getMessage();
             }
-            if ($this->loggedErrors & $e['type']) {
-                $this->loggers[$e['type']][0]->log($this->loggers[$e['type']][1], $message, $e);
-            }
+        }
+        if ($this->loggedErrors & $type) {
+            $this->loggers[$type][0]->log($this->loggers[$type][1], $message, $e);
         }
         if ($exception instanceof FatalErrorException && !$exception instanceof OutOfMemoryException && $error) {
             foreach ($this->getFatalErrorHandlers() as $handler) {
@@ -597,7 +611,7 @@ class ErrorHandler
 
         self::$reservedMemory = null;
 
-        $handler = set_error_handler('var_dump', 0);
+        $handler = set_error_handler('var_dump');
         $handler = is_array($handler) ? $handler[0] : null;
         restore_error_handler();
 
@@ -614,6 +628,8 @@ class ErrorHandler
                 static::unstackErrors();
             }
         } catch (\Exception $exception) {
+            // Handled below
+        } catch (\Throwable $exception) {
             // Handled below
         }
 
@@ -742,7 +758,7 @@ class ErrorHandler
     {
         @trigger_error('The '.__METHOD__.' static method is deprecated since version 2.6 and will be removed in 3.0. Use the setLoggers() or setDefaultLogger() methods instead.', E_USER_DEPRECATED);
 
-        $handler = set_error_handler('var_dump', 0);
+        $handler = set_error_handler('var_dump');
         $handler = is_array($handler) ? $handler[0] : null;
         restore_error_handler();
         if (!$handler instanceof self) {

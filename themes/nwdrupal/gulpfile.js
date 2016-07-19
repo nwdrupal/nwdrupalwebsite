@@ -143,7 +143,7 @@ gulp.task('scripts', function() {
 
 // Run drush to clear the theme registry.
 gulp.task('drush', shell.task([
-  'drush cache-clear theme-registry'
+  'drush cr'
 ]));
 
 // Remove any .info files in the node_modules folder
@@ -169,7 +169,7 @@ gulp.task('rename', function() {
 });
 
 // Default Task
-gulp.task('default', ['bower', 'lint', 'styles', 'images', 'scripts']);
+gulp.task('default', ['bower', 'styles', 'images', 'scripts']);
 
 // Watch Files For Changes
 gulp.task('watch', function() {
