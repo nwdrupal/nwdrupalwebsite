@@ -1,55 +1,37 @@
 {
-    "name": "drupal/drupal",
-    "description": "Drupal is an open source content management platform powering millions of websites and applications.",
+    "name": "access/access-d8-starter-kit",
+    "description": "Drupal 8 Starter Kit",
     "type": "project",
-    "license": "GPL-2.0+",
     "require": {
-        "composer/installers": "^1.0.21",
-        "wikimedia/composer-merge-plugin": "~1.3"
+        "wikimedia/composer-merge-plugin": "^1.4",
+        "drupal/core": "8.5.0",
+        "drush/drush": "~8.0",
+        "dms/meetup-api-client": "2.0.0",
+        "drupal/admin_toolbar": "^1.23"
     },
-    "replace": {
-        "drupal/core": "~8.1",
-        "drupal/meetup_pull": "8.*"
-    },
+    "license": "GPL-2.0+",
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "config": {
-        "preferred-install": "dist",
-        "autoloader-suffix": "Drupal8"
-    },
     "extra": {
-        "_readme": [
-            "By default Drupal loads the autoloader from ./vendor/autoload.php.",
-            "To change the autoloader you can edit ./autoload.php."
-        ],
+        "installer-paths": {
+            "docroot/core": ["type:drupal-core"],
+            "docroot/libraries/{$name}": ["type:drupal-library"],
+            "docroot/modules/contrib/{$name}": ["type:drupal-module"],
+            "docroot/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "docroot/themes/contrib/{$name}": ["type:drupal-theme"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
         "merge-plugin": {
             "include": [
-                "core/composer.json",
-                "modules/meetup_pull/composer.json"
+                "src/drupal-composer/composer.json"
             ],
-            "recurse": false,
-            "replace": false,
-            "merge-extra": false
+            "recurse": true,
+            "replace": true,
+            "ignore-duplicates": false,
+            "merge-dev": true,
+            "merge-extra": false,
+            "merge-extra-deep": false,
+            "merge-scripts": false
         }
-    },
-    "autoload": {
-        "psr-4": {
-            "Drupal\\Core\\Composer\\": "core/lib/Drupal/Core/Composer",
-            "Drupal\\composer_manager\\Composer\\": "modules/composer_manager/src/Composer"
-        }
-    },
-    "scripts": {
-        "pre-autoload-dump": "Drupal\\Core\\Composer\\Composer::preAutoloadDump",
-        "post-autoload-dump": "Drupal\\Core\\Composer\\Composer::ensureHtaccess",
-        "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
-        "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
-        "drupal-rebuild": "Drupal\\composer_manager\\Composer\\Command::rebuild",
-        "drupal-update": "Drupal\\composer_manager\\Composer\\Command::update"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packagist.drupal-composer.org"
-        }
-    ]
+    }
 }

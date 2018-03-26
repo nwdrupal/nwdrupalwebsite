@@ -1,9 +1,7 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @see       http://github.com/zendframework/zend-diactoros for the canonical source repository
- * @copyright Copyright (c) 2015-2016 Zend Technologies USA Inc. (http://www.zend.com)
+ * @see       https://github.com/zendframework/zend-diactoros for the canonical source repository
+ * @copyright Copyright (c) 2015-2017 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   https://github.com/zendframework/zend-diactoros/blob/master/LICENSE.md New BSD License
  */
 
@@ -16,13 +14,25 @@ use RuntimeException;
 
 class UploadedFile implements UploadedFileInterface
 {
+    const ERROR_MESSAGES = [
+        UPLOAD_ERR_OK         => 'There is no error, the file uploaded with success',
+        UPLOAD_ERR_INI_SIZE   => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+        UPLOAD_ERR_FORM_SIZE  => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was '
+            . 'specified in the HTML form',
+        UPLOAD_ERR_PARTIAL    => 'The uploaded file was only partially uploaded',
+        UPLOAD_ERR_NO_FILE    => 'No file was uploaded',
+        UPLOAD_ERR_NO_TMP_DIR => 'Missing a temporary folder',
+        UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk',
+        UPLOAD_ERR_EXTENSION  => 'A PHP extension stopped the file upload.',
+    ];
+
     /**
-     * @var string
+     * @var string|null
      */
     private $clientFilename;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $clientMediaType;
 
@@ -114,7 +124,10 @@ class UploadedFile implements UploadedFileInterface
     public function getStream()
     {
         if ($this->error !== UPLOAD_ERR_OK) {
-            throw new RuntimeException('Cannot retrieve stream due to upload error');
+            throw new RuntimeException(sprintf(
+                'Cannot retrieve stream due to upload error: %s',
+                self::ERROR_MESSAGES[$this->error]
+            ));
         }
 
         if ($this->moved) {
@@ -142,24 +155,29 @@ class UploadedFile implements UploadedFileInterface
      */
     public function moveTo($targetPath)
     {
+        if ($this->moved) {
+            throw new RuntimeException('Cannot move file; already moved!');
+        }
+
         if ($this->error !== UPLOAD_ERR_OK) {
-            throw new RuntimeException('Cannot retrieve stream due to upload error');
+            throw new RuntimeException(sprintf(
+                'Cannot retrieve stream due to upload error: %s',
+                self::ERROR_MESSAGES[$this->error]
+            ));
         }
 
-        if (! is_string($targetPath)) {
-            throw new InvalidArgumentException(
-                'Invalid path provided for move operation; must be a string'
-            );
-        }
-
-        if (empty($targetPath)) {
+        if (! is_string($targetPath) || empty($targetPath)) {
             throw new InvalidArgumentException(
                 'Invalid path provided for move operation; must be a non-empty string'
             );
         }
 
-        if ($this->moved) {
-            throw new RuntimeException('Cannot move file; already moved!');
+        $targetDirectory = dirname($targetPath);
+        if (! is_dir($targetDirectory) || ! is_writable($targetDirectory)) {
+            throw new RuntimeException(sprintf(
+                'The target directory `%s` does not exists or is not writable',
+                $targetDirectory
+            ));
         }
 
         $sapi = PHP_SAPI;

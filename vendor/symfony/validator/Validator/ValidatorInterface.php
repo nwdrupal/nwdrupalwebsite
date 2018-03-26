@@ -19,8 +19,6 @@ use Symfony\Component\Validator\Mapping\Factory\MetadataFactoryInterface;
 /**
  * Validates PHP values against constraints.
  *
- * @since  2.5
- *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
 interface ValidatorInterface extends MetadataFactoryInterface
@@ -92,8 +90,6 @@ interface ValidatorInterface extends MetadataFactoryInterface
      *
      * The returned validator adds all generated violations to the given
      * context.
-     *
-     * @param ExecutionContextInterface $context The execution context
      *
      * @return ContextualValidatorInterface The validator for that context
      */

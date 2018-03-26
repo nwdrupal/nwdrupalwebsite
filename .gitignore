@@ -1,3 +1,85 @@
-sites/default/files/php
-sites/default/files/.htaccess
-settings.local.php
+# OS generated files
+# ------------------------------------------------------------------------------
+*~
+.directory
+.DS_Store*
+.project
+.settings
+.svn
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+Desktop.ini
+
+# Thumbnails
+# ------------------------------------------------------------------------------
+._*
+Thumbs.db
+ehthumbs.db
+
+# Files that might appear on external disk
+# ------------------------------------------------------------------------------
+.Spotlight-V100
+.Trashes
+
+# IDE generated files
+# ------------------------------------------------------------------------------
+*.bbprojectd
+*.mode1v3
+*.mode2v3
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.tmproj
+*~.nib
+.idea
+.komodotools
+.project
+.settings
+nbproject
+atlassian-ide-plugin.xml
+
+# Vagrant
+# ------------------------------------------------------------------------------
+*.box
+.vagrant/
+
+# Ansible
+# ------------------------------------------------------------------------------
+*.retry
+
+# Ignore configuration files that may contain sensitive information.
+# ------------------------------------------------------------------------------
+docroot/sites/default/settings.local.php
+local.drushrc.php
+local.aliases.drushrc.php
+local.services.yml
+
+# Ignore paths that contain user-generated content.
+# ------------------------------------------------------------------------------
+docroot/sites/*/files
+/files-private
+docroot/sites/*/private
+
+# Ignore custom theme build artifacts
+# ------------------------------------------------------------------------------
+docroot/themes/custom/*/node_modules
+docroot/themes/custom/*/bower_components
+
+# Sass
+# ------------------------------------------------------------------------------
+.sass-cache
+
+# Exports
+# ------------------------------------------------------------------------------
+*.gz
+*.sql
+*.zip
+
+# Reports
+# ------------------------------------------------------------------------------
+/reports/*

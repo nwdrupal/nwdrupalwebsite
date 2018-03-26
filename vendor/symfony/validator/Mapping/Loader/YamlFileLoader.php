@@ -14,6 +14,7 @@ namespace Symfony\Component\Validator\Mapping\Loader;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser as YamlParser;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Loads validation metadata from a YAML file.
@@ -42,25 +43,7 @@ class YamlFileLoader extends FileLoader
     public function loadClassMetadata(ClassMetadata $metadata)
     {
         if (null === $this->classes) {
-            if (null === $this->yamlParser) {
-                $this->yamlParser = new YamlParser();
-            }
-
-            // This method may throw an exception. Do not modify the class'
-            // state before it completes
-            if (false === ($classes = $this->parseFile($this->file))) {
-                return false;
-            }
-
-            $this->classes = $classes;
-
-            if (isset($this->classes['namespaces'])) {
-                foreach ($this->classes['namespaces'] as $alias => $namespace) {
-                    $this->addNamespaceAlias($alias, $namespace);
-                }
-
-                unset($this->classes['namespaces']);
-            }
+            $this->loadClassesFromYaml();
         }
 
         if (isset($this->classes[$metadata->getClassName()])) {
@@ -72,6 +55,20 @@ class YamlFileLoader extends FileLoader
         }
 
         return false;
+    }
+
+    /**
+     * Return the names of the classes mapped in this file.
+     *
+     * @return string[] The classes names
+     */
+    public function getMappedClasses()
+    {
+        if (null === $this->classes) {
+            $this->loadClassesFromYaml();
+        }
+
+        return array_keys($this->classes);
     }
 
     /**
@@ -111,22 +108,30 @@ class YamlFileLoader extends FileLoader
      *
      * @param string $path The path of the YAML file
      *
-     * @return array|null The class descriptions or null, if the file was empty
+     * @return array The class descriptions
      *
      * @throws \InvalidArgumentException If the file could not be loaded or did
      *                                   not contain a YAML array
      */
     private function parseFile($path)
     {
+        $prevErrorHandler = set_error_handler(function ($level, $message, $script, $line) use ($path, &$prevErrorHandler) {
+            $message = E_USER_DEPRECATED === $level ? preg_replace('/ on line \d+/', ' in "'.$path.'"$0', $message) : $message;
+
+            return $prevErrorHandler ? $prevErrorHandler($level, $message, $script, $line) : false;
+        });
+
         try {
-            $classes = $this->yamlParser->parse(file_get_contents($path));
+            $classes = $this->yamlParser->parseFile($path, Yaml::PARSE_CONSTANT);
         } catch (ParseException $e) {
             throw new \InvalidArgumentException(sprintf('The file "%s" does not contain valid YAML.', $path), 0, $e);
+        } finally {
+            restore_error_handler();
         }
 
         // empty file
         if (null === $classes) {
-            return;
+            return array();
         }
 
         // not an array
@@ -137,12 +142,23 @@ class YamlFileLoader extends FileLoader
         return $classes;
     }
 
-    /**
-     * Loads the validation metadata from the given YAML class description.
-     *
-     * @param ClassMetadata $metadata         The metadata to load
-     * @param array         $classDescription The YAML class description
-     */
+    private function loadClassesFromYaml()
+    {
+        if (null === $this->yamlParser) {
+            $this->yamlParser = new YamlParser();
+        }
+
+        $this->classes = $this->parseFile($this->file);
+
+        if (isset($this->classes['namespaces'])) {
+            foreach ($this->classes['namespaces'] as $alias => $namespace) {
+                $this->addNamespaceAlias($alias, $namespace);
+            }
+
+            unset($this->classes['namespaces']);
+        }
+    }
+
     private function loadClassMetadataFromYaml(ClassMetadata $metadata, array $classDescription)
     {
         if (isset($classDescription['group_sequence_provider'])) {

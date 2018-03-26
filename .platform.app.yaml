@@ -7,7 +7,7 @@ access:
 relationships:
     database: "mysql:mysql"
 web:
-    document_root: "/"
+    document_root: "/docroot"
     passthru: "/index.php"
 disk: 2048
 mounts:
@@ -21,4 +21,4 @@ crons:
 # The build-time dependencies of the app.
 dependencies:
     php:
-        "drush/drush": "8.0.0-rc2"
+        "drush/drush": "8.0.0"
