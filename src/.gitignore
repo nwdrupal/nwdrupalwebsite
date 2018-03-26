@@ -6,3 +6,4 @@
 !composer_update.php
 !robo
 !drupal-composer
+!drupal-composer/*
