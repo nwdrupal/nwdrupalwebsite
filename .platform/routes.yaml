@@ -3,15 +3,15 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"https://nwdrupal.org.uk/":
-    type: upstream
-    upstream: "nwdrupal:http"
-    cache:
-      enabled: true
+#"https://nwdrupal.org.uk/":
+#    type: upstream
+#    upstream: "nwdrupal:http"
+#    cache:
+#      enabled: true
 
       # Base the cache on the session cookie. Ignore all other cookies.
-      cookies: ['/^SS?ESS/']
+#      cookies: ['/^SS?ESS/']
 
-"https://www.nwdrupal.org.uk/":
-    type: redirect
-    to: "https://nwdrupal.org.uk/"
+#"https://www.nwdrupal.org.uk/":
+#    type: redirect
+#    to: "https://nwdrupal.org.uk/"
