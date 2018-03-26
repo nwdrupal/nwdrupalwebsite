@@ -83,3 +83,11 @@ docroot/themes/custom/*/bower_components
 # Reports
 # ------------------------------------------------------------------------------
 /reports/*
+
+# Ignore composer files.
+drush/contrib
+vendor
+docroot/core
+docroot/modules/contrib
+docroot/themes/contrib
+docroot/profiles/contrib
