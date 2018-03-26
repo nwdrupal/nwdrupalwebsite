@@ -7,9 +7,10 @@ access:
 relationships:
     database: "mysql:mysql"
 web:
-    root: "docroot"
-    document_root: "/docroot"
-    passthru: "/index.php"
+    locations:
+        '/':
+            root: 'docroot'
+            passthru: '/index.php'
 disk: 2048
 mounts:
     "/public/sites/default/files": "shared:files/files"
@@ -18,7 +19,7 @@ mounts:
 crons:
     drupal:
         spec: "*/20 * * * *"
-        cmd: "cd public ; drush core-cron"
+        cmd: "cd docroot ; drush core-cron"
 # The build-time dependencies of the app.
 dependencies:
     php:
