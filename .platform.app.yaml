@@ -19,8 +19,4 @@ mounts:
 crons:
     drupal:
         spec: "*/20 * * * *"
-        cmd: "cd docroot ; drush core-cron"
-# The build-time dependencies of the app.
-dependencies:
-    php:
-        "drush/drush": "8.0.0"
+        cmd: "cd public/docroot ; drush core-cron"
