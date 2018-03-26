@@ -5,7 +5,7 @@
 
 "https://nwdrupal.org.uk/":
     type: upstream
-    upstream: "app:http"
+    upstream: "nwdrupal:http"
     cache:
       enabled: true
 
