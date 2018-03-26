@@ -5,3 +5,4 @@
 !.gitignore
 !composer_update.php
 !robo
+!drupal-composer
