@@ -7,6 +7,7 @@ access:
 relationships:
     database: "mysql:mysql"
 web:
+    root: "docroot"
     document_root: "/docroot"
     passthru: "/index.php"
 disk: 2048
