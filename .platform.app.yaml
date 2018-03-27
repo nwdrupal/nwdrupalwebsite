@@ -48,7 +48,7 @@ hooks:
       drush -y entup
 
 # The configuration of app when it is exposed to the docroot.
-docroot:
+web:
     # Specific parameters for different URL prefixes.
     locations:
         '/':
