@@ -4,7 +4,7 @@
     "type": "project",
     "require": {
         "wikimedia/composer-merge-plugin": "^1.4",
-        "drupal/core": "8.5.0",
+        "drupal/core": "8.5.1",
         "drush/drush": "~8.0",
         "dms/meetup-api-client": "2.0.0",
         "drupal/admin_toolbar": "^1.23"
