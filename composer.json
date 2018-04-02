@@ -9,7 +9,8 @@
         "dms/meetup-api-client": "2.0.0",
         "drupal/admin_toolbar": "^1.23",
         "drupal/webform": "^5.0@RC",
-        "drupal/antibot": "^1.2"
+        "drupal/antibot": "^1.2",
+        "drupal/xmlsitemap": "^1.0@alpha"
     },
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
