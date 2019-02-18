@@ -1,0 +1,20 @@
+uuid: 1195103d-837c-40bf-a300-b5a34ed07d55
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nwdrupal
+id: nwdrupal_messages
+theme: nwdrupal
+region: header
+weight: -4
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

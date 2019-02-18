@@ -1,0 +1,11 @@
+uuid: 7de9f6ba-dcb9-43b3-b1a8-2dd7f1e0d138
+langcode: en
+status: true
+dependencies: {  }
+id: NXhscRe0440PFpI5dSznEVgmauL25KojD7u4e9aZwOM
+label: 'https://nwdrupal.org.uk/'
+chunks: 1
+links: 1
+max_filesize: 266
+context: {  }
+updated: 1524155814

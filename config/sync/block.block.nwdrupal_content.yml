@@ -1,0 +1,25 @@
+uuid: bf080cca-0c92-498c-8d09-9e009ff058a2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nwdrupal
+id: nwdrupal_content
+theme: nwdrupal
+region: content
+weight: -3
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

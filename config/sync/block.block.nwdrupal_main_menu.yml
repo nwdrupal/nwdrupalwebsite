@@ -1,0 +1,24 @@
+uuid: e1abc990-a9ef-43f3-b21b-2760f9f53d72
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - nwdrupal
+id: nwdrupal_main_menu
+theme: nwdrupal
+region: header
+weight: -6
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

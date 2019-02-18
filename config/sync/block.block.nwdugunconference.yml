@@ -1,0 +1,25 @@
+uuid: c48dbc34-5444-4d51-aa5d-a3d23a2f1ea9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:3cce9f83-a55a-4466-bda1-e8338796cda6'
+  module:
+    - block_content
+  theme:
+    - nwdrupal
+id: nwdugunconference
+theme: nwdrupal
+region: hero
+weight: -10
+provider: null
+plugin: 'block_content:3cce9f83-a55a-4466-bda1-e8338796cda6'
+settings:
+  id: 'block_content:3cce9f83-a55a-4466-bda1-e8338796cda6'
+  label: 'NWDUG Unconference'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

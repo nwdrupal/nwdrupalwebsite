@@ -1,0 +1,10 @@
+uuid: 3f4e1231-60d8-40ec-881e-304926216fe1
+langcode: en
+status: false
+dependencies:
+  module:
+    - node
+id: node.search_result
+label: 'Search result highlighting input'
+targetEntityType: node
+cache: true

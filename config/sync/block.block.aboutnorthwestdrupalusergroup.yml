@@ -1,0 +1,31 @@
+uuid: f9c7bd76-8d3a-4e39-812d-45976ee7e7ac
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:e39891ca-a1b4-4d66-b000-0b9e647d4d40'
+  module:
+    - block_content
+    - system
+  theme:
+    - nwdrupal
+id: aboutnorthwestdrupalusergroup
+theme: nwdrupal
+region: sidebar_first
+weight: -10
+provider: null
+plugin: 'block_content:e39891ca-a1b4-4d66-b000-0b9e647d4d40'
+settings:
+  id: 'block_content:e39891ca-a1b4-4d66-b000-0b9e647d4d40'
+  label: 'About North West Drupal User Group'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }

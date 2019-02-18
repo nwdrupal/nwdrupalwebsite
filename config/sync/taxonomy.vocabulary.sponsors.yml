@@ -1,0 +1,9 @@
+uuid: 3d5c61c0-03cb-4462-8e38-560517b588d6
+langcode: en
+status: true
+dependencies: {  }
+name: Sponsors
+vid: sponsors
+description: ''
+hierarchy: 0
+weight: 0

@@ -1,0 +1,9 @@
+uuid: a2c67ca0-7ed2-43f9-9600-f18281171a4a
+langcode: en
+status: true
+dependencies: {  }
+name: Venue
+vid: venue
+description: ''
+hierarchy: 0
+weight: 0

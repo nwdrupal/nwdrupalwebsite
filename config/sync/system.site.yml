@@ -1,0 +1,13 @@
+uuid: cc32a557-a8de-421e-a800-e855afb991d7
+name: 'North West Drupal'
+mail: nwdrupal@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /events-front
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+mail_notification: ''

@@ -1,0 +1,23 @@
+uuid: d5729475-9614-4587-b82d-452db2e0f286
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nwdrupal
+id: nwdrupal_branding
+theme: nwdrupal
+region: header
+weight: -5
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

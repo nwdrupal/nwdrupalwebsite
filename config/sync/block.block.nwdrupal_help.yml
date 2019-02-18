@@ -1,0 +1,20 @@
+uuid: efa66362-b60c-40bb-a90e-147d5bbf342d
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - nwdrupal
+id: nwdrupal_help
+theme: nwdrupal
+region: content
+weight: -7
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

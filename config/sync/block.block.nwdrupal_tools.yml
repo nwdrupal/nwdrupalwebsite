@@ -1,0 +1,24 @@
+uuid: 6d2c50fd-5b70-4dab-b003-3b1e4ff22781
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.tools
+  module:
+    - system
+  theme:
+    - nwdrupal
+id: nwdrupal_tools
+theme: nwdrupal
+region: header
+weight: -7
+provider: null
+plugin: 'system_menu_block:tools'
+settings:
+  id: 'system_menu_block:tools'
+  label: Tools
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

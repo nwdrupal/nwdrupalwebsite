@@ -1,0 +1,9 @@
+country:
+  default: GB
+first_day: 1
+timezone:
+  default: UTC
+  user:
+    configurable: false
+    warn: false
+    default: 0

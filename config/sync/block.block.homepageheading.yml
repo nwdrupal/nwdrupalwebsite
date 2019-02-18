@@ -1,0 +1,31 @@
+uuid: 37601dfd-7844-4af4-9000-ae9b4e2fac33
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:40a414c0-b2d6-45e9-a000-d1e1f87aee40'
+  module:
+    - block_content
+    - system
+  theme:
+    - nwdrupal
+id: homepageheading
+theme: nwdrupal
+region: header
+weight: -5
+provider: null
+plugin: 'block_content:40a414c0-b2d6-45e9-a000-d1e1f87aee40'
+settings:
+  id: 'block_content:40a414c0-b2d6-45e9-a000-d1e1f87aee40'
+  label: 'Home Page Heading'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,48 @@
+uuid: 716dc161-1aa5-46c8-9711-17fa77551419
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.sponsors.field_sponsor_logo
+    - image.style.thumbnail
+    - taxonomy.vocabulary.sponsors
+  module:
+    - image
+    - path
+    - text
+id: taxonomy_term.sponsors.default
+targetEntityType: taxonomy_term
+bundle: sponsors
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_sponsor_logo:
+    weight: 31
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  name:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

@@ -1,0 +1,31 @@
+uuid: b3877092-379a-4a01-8d00-c166135fb632
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:14452236-8d8c-4202-9200-0b895956299e'
+  module:
+    - block_content
+    - system
+  theme:
+    - nwdrupal
+id: joinourcommunity
+theme: nwdrupal
+region: content_bottom
+weight: -9
+provider: null
+plugin: 'block_content:14452236-8d8c-4202-9200-0b895956299e'
+settings:
+  id: 'block_content:14452236-8d8c-4202-9200-0b895956299e'
+  label: 'Join our Community'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

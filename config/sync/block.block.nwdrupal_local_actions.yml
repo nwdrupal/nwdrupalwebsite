@@ -1,0 +1,18 @@
+uuid: 1109a5c8-60fb-49bb-a106-6cb31b451564
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nwdrupal
+id: nwdrupal_local_actions
+theme: nwdrupal
+region: content
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

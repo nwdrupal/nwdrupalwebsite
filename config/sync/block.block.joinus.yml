@@ -1,0 +1,24 @@
+uuid: ac8669df-c2ec-4a4d-8600-e5fc72f7b226
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.join-us
+  module:
+    - system
+  theme:
+    - nwdrupal
+id: joinus
+theme: nwdrupal
+region: footer
+weight: -9
+provider: null
+plugin: 'system_menu_block:join-us'
+settings:
+  id: 'system_menu_block:join-us'
+  label: 'Join Us:'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+visibility: {  }

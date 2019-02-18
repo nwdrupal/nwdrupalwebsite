@@ -1,0 +1,27 @@
+uuid: 32141742-6317-46ca-8e6c-f898dc03bf6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_attachments
+    - node.type.event
+  module:
+    - file
+id: node.event.field_event_attachments
+field_name: field_event_attachments
+entity_type: node
+bundle: event
+label: Attachments
+description: 'Add any attachments pertinent to the event.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx ppt pptx odp png'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

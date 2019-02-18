@@ -1,0 +1,18 @@
+uuid: 19e59002-4462-4a8c-ad00-0d1c10b8398e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - nwdrupal
+id: nwdrupal_page_title
+theme: nwdrupal
+region: content
+weight: -6
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

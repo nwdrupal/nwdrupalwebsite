@@ -1,0 +1,84 @@
+uuid: 3ef0c636-6be0-480b-8900-aeb6efb378f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.event.body
+    - field.field.node.event.field_event_attachments
+    - field.field.node.event.field_event_date
+    - field.field.node.event.field_event_meetup_id
+    - field.field.node.event.field_event_rsvps
+    - field.field.node.event.field_event_url
+    - field.field.node.event.field_event_venue
+    - node.type.event
+  module:
+    - datetime
+    - file
+    - link
+    - text
+    - user
+id: node.event.default
+targetEntityType: node
+bundle: event
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_event_attachments:
+    weight: 107
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_event_date:
+    weight: 103
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: event_date
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_event_rsvps:
+    weight: 104
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: false
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_event_url:
+    weight: 106
+    label: above
+    settings:
+      trim_length: 80
+      url_only: true
+      url_plain: true
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_event_venue:
+    weight: 105
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_event_meetup_id: true

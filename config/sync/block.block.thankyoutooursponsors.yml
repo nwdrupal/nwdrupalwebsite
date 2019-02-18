@@ -1,0 +1,31 @@
+uuid: 6bd60d3e-9c89-4220-a800-eab703cc0712
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:f16e2f04-e302-4031-a201-1ae949263b6b'
+  module:
+    - block_content
+    - system
+  theme:
+    - nwdrupal
+id: thankyoutooursponsors
+theme: nwdrupal
+region: content_bottom
+weight: -9
+provider: null
+plugin: 'block_content:f16e2f04-e302-4031-a201-1ae949263b6b'
+settings:
+  id: 'block_content:f16e2f04-e302-4031-a201-1ae949263b6b'
+  label: 'Thank you to our Sponsors:'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
