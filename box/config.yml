@@ -4,6 +4,7 @@
 vagrant_machine_name: nwdrupal
 vagrant_hostname: "{{ vagrant_machine_name }}.local"
 vagrant_ip: 192.168.88.20
+vagrant_box: geerlingguy/ubuntu1604
 
 # A list of synced folders, with the keys 'local_path', 'destination', and
 # a 'type' of [nfs|rsync|smb] (leave empty for slow native shares). See
@@ -61,9 +62,9 @@ drupalvm_cron_jobs: []
 
 # Drupal VM automatically creates a drush alias file in your ~/.drush folder if
 # this variable is 'true'.
-configure_drush_aliases: true
-drush_aliases_host_template: "templates/drupalvm.aliases.drushrc.php.j2"
-drush_aliases_guest_template: "templates/drupalvm-local.aliases.drushrc.php.j2"
+configure_drush_aliases: false
+#drush_aliases_host_template: "templates/drupalvm.aliases.drushrc.php.j2"
+#drush_aliases_guest_template: "templates/drupalvm-local.aliases.drushrc.php.j2"
 
 # Comment out any extra utilities you don't want to install. If you don't want
 # to install *any* extras, set this value to an empty set, e.g. `[]`.
@@ -71,7 +72,7 @@ installed_extras:
   - adminer
   # - blackfire
   # - drupalconsole
-  - drush
+  # - drush
   # - elasticsearch
   # - java
   - mailhog
@@ -85,7 +86,7 @@ installed_extras:
   # - solr
   # - tideways
   # - upload-progress
-  - varnish
+  # - varnish
   - xdebug
   # - xhprof # use `tideways` if you're installing PHP 7+
 
@@ -93,16 +94,13 @@ installed_extras:
 extra_packages:
   - sqlite
 
-# You can configure almost anything else on the server in the rest of this file.
-drush_version: "8.1.10"
-
 extra_security_enabled: false
 
-# PHP Configuration. Currently-supported versions: 5.6, 7.0, 7.1.
+# PHP Configuration.
 # See version-specific notes: http://docs.drupalvm.com/en/latest/configurations/php/
-php_version: "7.1"
+php_version: "7.4"
 php_install_recommends: no
-php_memory_limit: "192M"
+php_memory_limit: "256M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
 php_realpath_cache_size: "1024K"
@@ -112,20 +110,17 @@ php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
 php_max_input_vars: "4000"
 
+composer_global_packages: []
+
 # Run specified scripts before or after VM is provisioned. Path is relative to
 # the `provisioning/playbook.yml` file.
 pre_provision_scripts: []
 post_provision_scripts: []
   # - "../examples/scripts/configure-solr.sh"
 
-# Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
-php_xdebug_idekey: PHPSTORM
+# Xdebug Options
+php_xdebug_version: "2.9.6"
+php_xdebug_default_enable: 1
 
-# Apache SSL setup.
-apache_vhosts_ssl:
-  - servername: "{{ drupal_domain }}"
-    documentroot: "{{ drupal_core_path }}"
-    certificate_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
-    certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"
-    extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
+# Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
+php_xdebug_idekey: VSCODE

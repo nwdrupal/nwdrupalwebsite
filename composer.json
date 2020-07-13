@@ -4,8 +4,8 @@
     "type": "project",
     "require": {
         "wikimedia/composer-merge-plugin": "^1.4",
-        "drupal/core": "8.5.3",
-        "drush/drush": "~8.0",
+        "drupal/core": "~8.0",
+        "drush/drush": "~9.0",
         "dms/meetup-api-client": "2.0.0",
         "drupal/admin_toolbar": "^1.23",
         "drupal/webform": "^5.0@RC",
@@ -37,5 +37,8 @@
             "merge-extra-deep": false,
             "merge-scripts": false
         }
+    },
+    "require-dev": {
+        "geerlingguy/drupal-vm": "^5.2"
     }
 }
