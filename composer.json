@@ -1,14 +1,12 @@
 {
-    "name": "access/access-d8-starter-kit",
-    "description": "Drupal 8 Starter Kit",
+    "name": "nwdrupal/nwdrupalwebsite",
+    "description": "NWDUG Site",
     "type": "project",
     "require": {
-        "wikimedia/composer-merge-plugin": "^1.4",
         "drupal/core": "~8.0",
         "drush/drush": "~9.0",
         "dms/meetup-api-client": "2.0.0",
         "drupal/admin_toolbar": "^1.23",
-        "drupal/webform": "^5.0@RC",
         "drupal/antibot": "^1.2",
         "drupal/xmlsitemap": "^1.0@alpha",
         "drupal/recaptcha": "^2.3"
@@ -24,18 +22,6 @@
             "docroot/profiles/contrib/{$name}": ["type:drupal-profile"],
             "docroot/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
-        },
-        "merge-plugin": {
-            "include": [
-                "src/drupal-composer/composer.json"
-            ],
-            "recurse": true,
-            "replace": true,
-            "ignore-duplicates": false,
-            "merge-dev": true,
-            "merge-extra": false,
-            "merge-extra-deep": false,
-            "merge-scripts": false
         }
     },
     "require-dev": {
