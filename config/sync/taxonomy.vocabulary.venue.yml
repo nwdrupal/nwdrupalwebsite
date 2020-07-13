@@ -5,5 +5,4 @@ dependencies: {  }
 name: Venue
 vid: venue
 description: ''
-hierarchy: 0
 weight: 0
