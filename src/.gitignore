@@ -1,9 +1,0 @@
-# Ignore everything.
-*
-
-# Except these special files.
-!.gitignore
-!composer_update.php
-!robo
-!drupal-composer
-!drupal-composer/**
